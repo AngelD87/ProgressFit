@@ -1,0 +1,135 @@
+.contenedor-login {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  background:
+    radial-gradient(circle at top, #1d2f5f 0%, #0f0f0f 35%),
+    #0f0f0f;
+}
+
+.tarjeta-login {
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.cabecera-login {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.logo-login {
+  width: 300px;
+  height: auto;
+  margin-bottom: -80px;
+}
+
+.cabecera-login p {
+  color: #888;
+  font-size: 0.95rem;
+  margin-top: 0;
+}
+
+
+.error-login {
+  background-color: #2a1515;
+  border: 1px solid #5a2020;
+  color: #ff6b6b;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.formulario-login {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.grupo-campo label {
+  color: #ccc;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.grupo-campo input {
+  background-color: #242424;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.grupo-campo input:focus {
+  border-color: #4f7fff;
+}
+
+.grupo-campo input::placeholder {
+  color: #555;
+}
+
+.boton-login {
+  background-color: #4f7fff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s, transform 0.1s;
+  width: 100%;
+}
+
+.boton-login:hover {
+  background-color: #3d6ee0;
+  box-shadow: 0 0 20px rgba(79, 127, 255, 0.45);
+}
+
+.boton-login:active {
+  transform: scale(0.98);
+}
+
+.boton-login:disabled {
+  background-color: #2a2a2a;
+  color: #555;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.texto-registro {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.texto-registro span {
+  color: #4f7fff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.texto-registro span:hover {
+  text-decoration: underline;
+}
