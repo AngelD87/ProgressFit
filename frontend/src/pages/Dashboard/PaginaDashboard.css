@@ -1,0 +1,227 @@
+* {
+  box-sizing: border-box;
+}
+
+.contenedor-dashboard {
+  min-height: 100vh;
+  background-color: #111;
+  color: white;
+}
+
+.barra-navegacion {
+  background-color: #1e1e1e;
+  border-bottom: 2px solid #3153b7;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.nav-logo {
+  height: 130px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #3153b7;
+}
+
+.nav-nombre {
+  color: lightgray;
+}
+
+.boton-logout {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid gray;
+  padding: 7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contenido-dashboard {
+  padding: 18px 15px 85px;
+}
+
+.seccion-bienvenida {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bienvenida-avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid #3153b7;
+}
+
+.bienvenida-texto h1 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.bienvenida-texto p {
+  color: lightgray;
+  margin: 5px 0 0;
+}
+
+.tarjetas-estadisticas {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding: 15px 0;
+  margin-bottom: 20px;
+}
+
+.tarjeta-estadistica {
+  width: 50%;
+  margin-bottom: 12px;
+}
+
+.estadistica-numero {
+  display: block;
+  color: #4f7fff;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.estadistica-label {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.boton-nuevo-entrenamiento {
+  width: 100%;
+  background-color: #3153b7;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+
+.boton-nuevo-entrenamiento:hover {
+  background-color: #24429b;
+}
+
+.seccion-entrenamientos h2 {
+  margin-bottom: 15px;
+}
+
+.texto-cargando {
+  text-align: center;
+  color: gray;
+}
+
+.sin-entrenamientos {
+  text-align: center;
+  color: gray;
+  padding: 30px;
+}
+
+.lista-entrenamientos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tarjeta-entrenamiento {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.tarjeta-entrenamiento:hover {
+  background-color: #2a2a2a;
+}
+
+.entrenamiento-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.entrenamiento-nombre {
+  font-weight: bold;
+}
+
+.entrenamiento-fecha {
+  color: gray;
+  font-size: 13px;
+}
+
+.estado-completado {
+  color: #4caf50;
+  font-size: 13px;
+}
+
+.estado-activo {
+  color: #4f7fff;
+  font-size: 13px;
+}
+
+.navbar-inferior {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background-color: #1e1e1e;
+  border-top: 2px solid #3153b7;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-inferior-item {
+  background: none;
+  border: none;
+  color: lightgray;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icono-nav {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.nav-inferior-item.activo {
+  color: #4f7fff;
+}
+
+@media (min-width: 800px) {
+  .contenido-dashboard {
+    width: 850px;
+    margin: 0 auto;
+  }
+
+  .tarjeta-estadistica {
+    width: 25%;
+  }
+}
