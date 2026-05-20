@@ -5,7 +5,7 @@ import { login } from "../../services/authServicio"
 
 function usePaginaLogin() {
 
-  //FORMULARIO
+  //ESTADOS DEL FORMULARIO
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -22,22 +22,38 @@ function usePaginaLogin() {
     setCargando(true)
 
     try {
-      //COMPROBAMOS EL USUARIO
+      //LLAMADA AL BACKEND
       const datos = await login(email, password)
 
-      //GUARDAMOS SESIÓM
-      guardarSesion(datos, datos.token)
+      //GUARDAMOS EL TOKEN
+      const tokenJwt = datos.token
+
+      //CREAMOS EL OBJETO USUARIO SIN EL TOKEN
+      const datosUsuario = {
+        idUsuario: datos.idUsuario,
+        nombre: datos.nombre,
+        email: datos.email,
+        pesoCorporal: datos.pesoCorporal,
+        altura: datos.altura,
+        avatar: datos.avatar,
+        rol: datos.rol,
+        isActive: datos.isActive
+      }
+
+      //GUARDAMOS LA SESION EN EL CONTEXTO
+      guardarSesion(datosUsuario, tokenJwt)
 
       //REDIRIGIMOS SEGUN EL ROL Y SI TIENE AVATAR
-      if (datos.rol === "ADMIN") {
+      if (datosUsuario.rol === "ADMIN") {
         navigate("/admin")
-      } else if (!datos.avatar) {
+      } else if (!datosUsuario.avatar) {
         navigate("/seleccionar-avatar")
       } else {
         navigate("/dashboard")
       }
 
-    } catch {
+    } catch (err) {
+      console.error("Error login:", err)
       setError("Email o contraseña incorrectos")
     } finally {
       setCargando(false)

@@ -54,6 +54,7 @@ public class AuthService {
                 .email(usuario.getEmail())
                 .rol(usuario.getRol())
                 .token(token)
+                .avatar(usuario.getAvatar())
                 .build();
     }
 }

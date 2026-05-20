@@ -6,34 +6,29 @@ import listaAvatares from "../../assets/avatares/listaAvatares"
 
 function usePaginaSeleccionAvatar() {
 
-  const { usuario, login, token } = useAuth()
+  const { usuario, login } = useAuth()
   const navigate = useNavigate()
 
-  //CATEGORIA DEL FILTRO
   const [categoria, setCategoria] = useState("todos")
-
-  //AVATAR SELECCIONADO
   const [avatarSeleccionado, setAvatarSeleccionado] = useState(null)
-
-  //CARGANDO MIENTRAS SE GUARDA
   const [cargando, setCargando] = useState(false)
 
-  //FILTRAMOS
   const avataresFiltrados = categoria === "todos"
     ? listaAvatares
     : listaAvatares.filter(a => a.categoria === categoria)
 
-  //GUARDAR AVATAR
   const handleConfirmar = async () => {
     if (!avatarSeleccionado) return
     setCargando(true)
 
     try {
-      //GUARDAMOS AVATAR
       const usuarioActualizado = await guardarAvatar(usuario.idUsuario, avatarSeleccionado.id)
 
-      //ACTUALIZAMOS USUARIO
-      login(usuarioActualizado, token)
+      //LEEMOS EL TOKEN DIRECTAMENTE DEL LOCALSTORAGE PARA NO PERDERLO
+      const tokenGuardado = localStorage.getItem("token")
+
+      //ACTUALIZAMOS EL CONTEXTO CON EL USUARIO Y EL TOKEN
+      login(usuarioActualizado, tokenGuardado)
 
       navigate("/dashboard")
 

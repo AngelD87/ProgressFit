@@ -12,4 +12,5 @@ public class LoginResponseDTO {
     private String email;
     private Rol rol;
     private String token;
+    private String avatar;
 }

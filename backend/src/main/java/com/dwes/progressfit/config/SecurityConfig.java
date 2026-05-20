@@ -40,14 +40,14 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
 
-                        // RUTAS PÚBLICAS (no necesitan token)
+                        //RUTAS PUBLICAS (no necesitan token)
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
 
-                        // RUTAS SOLO ADMIN
+                        //RUTAS SOLO ADMIN
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
-                        // RESTO DE RUTAS (necesitan token)
+                        //RESTO DE RUTAS (necesitan token)
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFiltro, UsernamePasswordAuthenticationFilter.class);
@@ -60,8 +60,10 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
                 "http://localhost:5173",
-                "http://localhost:5174"
-        ));        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                "http://localhost:5174",
+                "http://localhost"
+        ));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
 

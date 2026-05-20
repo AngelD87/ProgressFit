@@ -2,7 +2,7 @@ import axios from "axios"
 
 //CREAMOS UNA INSTANCIA DE AXIOS CON LA URL BASE DEL BACKEND
 const api = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080/api",
 })
 
 //ANTES DE CADA PETICION AÑADIMOS EL TOKEN JWT AL HEADER SI EXISTE
