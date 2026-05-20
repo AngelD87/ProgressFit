@@ -80,14 +80,17 @@ docker compose down -v
 ```
 
 ## Estructura del proyecto
+
+```
 ProgressFit/
-├── backend/          < API REST con Spring Boot
+├── backend/          ← API REST con Spring Boot
 │   └── Dockerfile
-├── frontend/         < Interfaz con React + Vite
+├── frontend/         ← Interfaz con React + Vite
 │   ├── Dockerfile
 │   └── nginx.conf
 ├── docker-compose.yml
 └── despliegue.md
+```
 
 ## Tecnologías utilizadas
 
