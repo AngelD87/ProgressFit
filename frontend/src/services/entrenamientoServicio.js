@@ -1,4 +1,4 @@
-import api from './api'
+import api from "./api"
 
 //OBTENER TODOS LOS ENTRENAMIENTOS DE UN USUARIO
 export const obtenerEntrenamientos = async (idUsuario) => {
@@ -14,7 +14,7 @@ export const obtenerEntrenamientoCompleto = async (id) => {
 
 //CREAR ENTRENAMIENTO
 export const crearEntrenamiento = async (datos) => {
-  const response = await api.post('/entrenamientos', datos)
+  const response = await api.post("/entrenamientos", datos)
   return response.data
 }
 

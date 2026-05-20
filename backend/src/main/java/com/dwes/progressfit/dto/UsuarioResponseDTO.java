@@ -14,4 +14,6 @@ public class UsuarioResponseDTO {
     private Double altura;
     private Boolean isActive;
     private Rol rol;
+    private String avatar;
+
 }

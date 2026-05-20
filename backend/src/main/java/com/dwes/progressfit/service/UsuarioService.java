@@ -32,6 +32,7 @@ public class UsuarioService {
                 .altura(usuario.getAltura())
                 .isActive(usuario.getIsActive())
                 .rol(usuario.getRol())
+                .avatar(usuario.getAvatar())
                 .build();
     }
 
@@ -123,6 +124,11 @@ public class UsuarioService {
             }
             usuario.setAltura(dto.getAltura());
         }
+
+        if (dto.getAvatar() != null) {
+            usuario.setAvatar(dto.getAvatar());
+        }
+
         Usuario actualizado = usuarioRepository.save(usuario);
         return toResponseDTO(actualizado);
     }

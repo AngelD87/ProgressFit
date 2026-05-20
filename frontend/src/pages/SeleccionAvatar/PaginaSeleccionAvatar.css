@@ -1,0 +1,122 @@
+.contenedor-avatar {
+  min-height: 100vh;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tarjeta-avatar {
+  width: 600px;
+  background-color: #1e1e1e;
+  border: 2px solid #3153b7;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.cabecera-avatar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cabecera-avatar h2 {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.cabecera-avatar p {
+  color: lightgray;
+}
+
+.filtros-avatar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.boton-filtro {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid gray;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.boton-filtro:hover {
+  background-color: #3a3a3a;
+}
+
+.boton-filtro.activo {
+  background-color: #3153b7;
+}
+
+.cuadricula-avatares {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tarjeta-avatar-opcion {
+  background-color: #2a2a2a;
+  border: 2px solid transparent;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tarjeta-avatar-opcion:hover {
+  border-color: #3153b7;
+}
+
+.tarjeta-avatar-opcion.seleccionado {
+  border-color: #3153b7;
+  background-color: #23396d;
+}
+
+.tarjeta-avatar-opcion img {
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.tarjeta-avatar-opcion span {
+  color: white;
+  font-size: 13px;
+}
+
+.boton-confirmar {
+  width: 100%;
+  background-color: #3153b7;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.boton-confirmar:hover {
+  background-color: #24429b;
+}
+
+.boton-confirmar:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+  .tarjeta-avatar {
+    width: 90%;
+  }
+
+  .cuadricula-avatares {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filtros-avatar {
+    flex-direction: column;
+  }
+}

@@ -1,135 +1,110 @@
 .contenedor-login {
-  min-height: 100dvh;
+  min-height: 100vh;
+  background-color: #111;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 1rem;
-
-  background:
-    radial-gradient(circle at top, #1d2f5f 0%, #0f0f0f 35%),
-    #0f0f0f;
+  align-items: center;
 }
 
 .tarjeta-login {
-  background-color: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 16px;
-  padding: 2.5rem;
-  width: 100%;
-  max-width: 400px;
+  width: 400px;
+  background-color: #1e1e1e;
+  border: 2px solid #3153b7;
+  border-radius: 8px;
+  padding: 25px;
 }
 
 .cabecera-login {
   text-align: center;
-  margin-bottom: 0.75rem;
 }
 
 .logo-login {
-  width: 300px;
-  height: auto;
-  margin-bottom: -80px;
+  width: 230px;
+  margin-bottom: -45px;
 }
 
 .cabecera-login p {
-  color: #888;
-  font-size: 0.95rem;
-  margin-top: 0;
+  color: lightgray;
 }
 
-
 .error-login {
-  background-color: #2a1515;
-  border: 1px solid #5a2020;
-  color: #ff6b6b;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
+  background-color: #441818;
+  color: #ff7777;
+  border: 1px solid red;
+  padding: 10px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
 .formulario-login {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 15px;
 }
 
 .grupo-campo {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .grupo-campo label {
-  color: #ccc;
-  font-size: 0.9rem;
-  font-weight: 500;
+  color: white;
+  margin-bottom: 5px;
 }
 
 .grupo-campo input {
-  background-color: #242424;
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  color: #ffffff;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.2s;
-  width: 100%;
-  box-sizing: border-box;
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .grupo-campo input:focus {
-  border-color: #4f7fff;
+  border: 1px solid #3153b7;
+  outline: none;
 }
 
 .grupo-campo input::placeholder {
-  color: #555;
+  color: #888;
 }
 
 .boton-login {
-  background-color: #4f7fff;
-  color: #ffffff;
+  background-color: #3153b7;
+  color: white;
   border: none;
-  border-radius: 8px;
-  padding: 0.85rem;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 12px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: 0.5rem;
-  transition: background-color 0.2s, transform 0.1s;
-  width: 100%;
 }
 
 .boton-login:hover {
-  background-color: #3d6ee0;
-  box-shadow: 0 0 20px rgba(79, 127, 255, 0.45);
-}
-
-.boton-login:active {
-  transform: scale(0.98);
+  background-color: #24429b;
 }
 
 .boton-login:disabled {
-  background-color: #2a2a2a;
-  color: #555;
+  background-color: gray;
   cursor: not-allowed;
-  transform: none;
 }
 
 .texto-registro {
+  color: lightgray;
   text-align: center;
-  margin-top: 1.5rem;
-  color: #666;
-  font-size: 0.9rem;
+  margin-top: 15px;
 }
 
 .texto-registro span {
   color: #4f7fff;
   cursor: pointer;
-  font-weight: 500;
+  text-decoration: underline;
 }
 
-.texto-registro span:hover {
-  text-decoration: underline;
+@media (max-width: 500px) {
+  .tarjeta-login {
+    width: 90%;
+  }
+
+  .logo-login {
+    width: 200px;
+  }
 }

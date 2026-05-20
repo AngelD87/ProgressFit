@@ -1,13 +1,13 @@
-import axios from 'axios'
+import axios from "axios"
 
 //CREAMOS UNA INSTANCIA DE AXIOS CON LA URL BASE DEL BACKEND
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: "http://localhost:8080/api",
 })
 
 //ANTES DE CADA PETICION AÑADIMOS EL TOKEN JWT AL HEADER SI EXISTE
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token")
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
@@ -19,9 +19,9 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('token')
-      localStorage.removeItem('usuario')
-      window.location.href = '/login'
+      localStorage.removeItem("token")
+      localStorage.removeItem("usuario")
+      window.location.href = "/login"
     }
     return Promise.reject(error)
   }

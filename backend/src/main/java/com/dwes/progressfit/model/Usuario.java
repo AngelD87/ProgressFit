@@ -38,4 +38,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private Rol rol;
+
+    @Column(length = 50)
+    private String avatar;
 }

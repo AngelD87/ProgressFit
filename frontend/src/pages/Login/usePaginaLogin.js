@@ -1,42 +1,44 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/useAuth'
-import { login } from '../../services/authServicio'
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../../context/useAuth"
+import { login } from "../../services/authServicio"
 
 function usePaginaLogin() {
 
-  //ESTADOS DEL FORMULARIO
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  //FORMULARIO
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
   const [cargando, setCargando] = useState(false)
 
   //HOOKS DE NAVEGACION Y CONTEXTO
   const navigate = useNavigate()
   const { login: guardarSesion } = useAuth()
 
-  //FUNCION QUE SE EJECUTA AL ENVIAR EL FORMULARIO
+  //CUANDO ENVIAMOS EL FORMULARIO
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError('')
+    setError("")
     setCargando(true)
 
     try {
-      //LLAMADA AL BACKEND
+      //COMPROBAMOS EL USUARIO
       const datos = await login(email, password)
 
-      //GUARDAMOS LA SESION EN EL CONTEXTO
+      //GUARDAMOS SESIÓM
       guardarSesion(datos, datos.token)
 
-      //REDIRIGIMOS SEGUN EL ROL
-      if (datos.rol === 'ADMIN') {
-        navigate('/admin')
+      //REDIRIGIMOS SEGUN EL ROL Y SI TIENE AVATAR
+      if (datos.rol === "ADMIN") {
+        navigate("/admin")
+      } else if (!datos.avatar) {
+        navigate("/seleccionar-avatar")
       } else {
-        navigate('/dashboard')
+        navigate("/dashboard")
       }
 
     } catch {
-    setError('Email o contraseña incorrectos')
+      setError("Email o contraseña incorrectos")
     } finally {
       setCargando(false)
     }

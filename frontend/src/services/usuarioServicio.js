@@ -1,8 +1,8 @@
-import api from './api'
+import api from "./api"
 
 //OBTENER TODOS LOS USUARIOS (SOLO ADMIN)
 export const obtenerUsuarios = async () => {
-  const response = await api.get('/usuarios')
+  const response = await api.get("/usuarios")
   return response.data
 }
 
@@ -14,7 +14,7 @@ export const obtenerUsuarioPorId = async (id) => {
 
 //CREAR USUARIO (REGISTRO)
 export const crearUsuario = async (datos) => {
-  const response = await api.post('/usuarios', datos)
+  const response = await api.post("/usuarios", datos)
   return response.data
 }
 
@@ -33,4 +33,10 @@ export const actualizarUsuarioAdmin = async (id, datos) => {
 //ELIMINAR USUARIO
 export const eliminarUsuario = async (id) => {
   await api.delete(`/usuarios/${id}`)
+}
+
+//GUARDAR EL AVATAR DEL USUARIO
+export const guardarAvatar = async (id, avatar) => {
+  const response = await api.put(`/usuarios/${id}`, { avatar })
+  return response.data
 }

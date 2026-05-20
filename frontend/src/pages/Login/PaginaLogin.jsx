@@ -1,11 +1,10 @@
-import usePaginaLogin from './usePaginaLogin'
-import './PaginaLogin.css'
-import logo from '../../assets/logo.png'
-
+import usePaginaLogin from "./usePaginaLogin"
+import "./PaginaLogin.css"
+import logo from "../../assets/logo.png"
 
 function PaginaLogin() {
 
-  //TRAEMOS TODA LA LOGICA DEL HOOK
+  //TRAEMOS LOS DATOS Y FUNCIONES DEL HOOK
   const {
     email,
     setEmail,
@@ -62,14 +61,14 @@ function PaginaLogin() {
             type="submit"
             className="boton-login"
             disabled={cargando}>
-            {cargando ? 'Entrando...' : 'Entrar'}
+            {cargando ? "Entrando..." : "Entrar"}
           </button>
 
         </form>
 
         <p className="texto-registro">
-          ¿No tienes cuenta?{' '}
-          <span onClick={() => navigate('/registro')}>
+          ¿No tienes cuenta?{" "}
+          <span onClick={() => navigate("/registro")}>
             Regístrate
           </span>
         </p>

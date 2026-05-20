@@ -1,8 +1,8 @@
-import api from './api'
+import api from "./api"
 
 //OBTENER TODOS LOS EJERCICIOS
 export const obtenerEjercicios = async () => {
-  const response = await api.get('/ejercicios')
+  const response = await api.get("/ejercicios")
   return response.data
 }
 
@@ -14,7 +14,7 @@ export const obtenerEjerciciosPorMusculo = async (idMusculo) => {
 
 //CREAR EJERCICIO
 export const crearEjercicio = async (datos) => {
-  const response = await api.post('/ejercicios', datos)
+  const response = await api.post("/ejercicios", datos)
   return response.data
 }
 

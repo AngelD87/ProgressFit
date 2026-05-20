@@ -1,0 +1,139 @@
+.contenedor-registro {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  padding: 20px;
+}
+
+.tarjeta-registro {
+  width: 420px;
+  background-color: #1b1b1b;
+  border: 2px solid #3153b7;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.cabecera-registro {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-registro {
+  width: 250px;
+  margin-bottom: -55px;
+}
+
+.cabecera-registro p {
+  color: #aaa;
+  font-size: 15px;
+  margin: 0;
+}
+
+.error-registro {
+  background-color: #3a1b1b;
+  color: #ff7777;
+  border: 1px solid #793333;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.formulario-registro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.grupo-campo label {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.grupo-campo input {
+  background-color: #252525;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.grupo-campo input:focus {
+  border-color: #3153b7;
+}
+
+.grupo-campo input::placeholder {
+  color: #777;
+}
+
+.fila-dos-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.boton-registro {
+  width: 100%;
+  background-color: #3153b7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.boton-registro:hover {
+  background-color: #24429b;
+}
+
+.boton-registro:disabled {
+  background-color: #444;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.texto-login {
+  text-align: center;
+  color: #aaa;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.texto-login span {
+  color: #4f7fff;
+  cursor: pointer;
+}
+
+.texto-login span:hover {
+  text-decoration: underline;
+}
+
+/* movil */
+@media (max-width: 500px) {
+  .tarjeta-registro {
+    width: 100%;
+    padding: 22px;
+  }
+
+  .logo-registro {
+    width: 220px;
+  }
+
+  .fila-dos-campos {
+    grid-template-columns: 1fr;
+  }
+}

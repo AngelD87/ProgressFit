@@ -9,4 +9,6 @@ public class UsuarioUpdateDTO {
     private String password;
     private Double pesoCorporal;
     private Double altura;
+    private String avatar;
+
 }
