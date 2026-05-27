@@ -1,10 +1,8 @@
 import usePaginaDashboard from "./usePaginaDashboard"
 import "./PaginaDashboard.css"
 import listaAvatares from "../../assets/avatares/listaAvatares"
-import logo from "../../assets/logo.png"
-import iconoInicio from "../../assets/iconos-navegacion/icono-inicio.png"
-import iconoStats from "../../assets/iconos-navegacion/icono-stats.png"
-import iconoPerfil from "../../assets/iconos-navegacion/icono-perfil.png"
+import NavbarSuperior from "../../components/NavbarSuperior/NavbarSuperior"
+import NavbarInferior from "../../components/NavbarInferior/NavbarInferior"
 
 function PaginaDashboard() {
 
@@ -12,7 +10,6 @@ function PaginaDashboard() {
     usuario,
     entrenamientos,
     cargando,
-    handleLogout,
     navigate,
     totalEntrenamientos
   } = usePaginaDashboard()
@@ -22,12 +19,7 @@ function PaginaDashboard() {
   return (
     <div className="contenedor-dashboard">
 
-      <nav className="barra-navegacion">
-        <img src={logo} alt="ProgressFit" className="nav-logo" />
-        <button className="boton-logout" onClick={handleLogout}>
-          Salir
-        </button>
-      </nav>
+      <NavbarSuperior />
 
       <main className="contenido-dashboard">
 
@@ -60,14 +52,12 @@ function PaginaDashboard() {
           </div>
         </div>
 
-        
         <button
           className="boton-nuevo-entrenamiento"
           onClick={() => navigate("/entrenamientos/nuevo")}>
-          + Nuevo entrenamiento
+          Nuevo entrenamiento
         </button>
 
-        
         <div className="seccion-entrenamientos">
           <h2>Mis entrenamientos</h2>
 
@@ -92,9 +82,9 @@ function PaginaDashboard() {
                     </span>
                   </div>
                   {entrenamiento.fin ? (
-                    <span className="estado-completado">Completado</span>
+                    <span className="estado-completado">COMPLETADO</span>
                   ) : (
-                    <span className="estado-activo">En curso</span>
+                    <span className="estado-activo">ABIERTO</span>
                   )}
                 </div>
               ))}
@@ -104,26 +94,7 @@ function PaginaDashboard() {
 
       </main>
 
-      <nav className="navbar-inferior">
-        <button
-          className="nav-inferior-item activo"
-          onClick={() => navigate("/dashboard")}>
-          <img src={iconoInicio} alt="Inicio" className="icono-nav" />
-          Inicio
-        </button>
-        <button
-          className="nav-inferior-item"
-          onClick={() => navigate("/estadisticas")}>
-          <img src={iconoStats} alt="Stats" className="icono-nav" />
-          Rendimiento
-        </button>
-        <button
-          className="nav-inferior-item"
-          onClick={() => navigate("/perfil")}>
-          <img src={iconoPerfil} alt="Perfil" className="icono-nav" />
-          Perfil
-        </button>
-      </nav>
+      <NavbarInferior />
 
     </div>
   )

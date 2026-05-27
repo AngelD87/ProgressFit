@@ -1,0 +1,382 @@
+* {
+  box-sizing: border-box;
+}
+
+.contenedor-detalle {
+  min-height: 100vh;
+  background-color: #111;
+  color: white;
+}
+
+.contenido-detalle {
+  padding: 18px 15px 100px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.texto-cargando {
+  text-align: center;
+  color: gray;
+  padding: 40px;
+}
+
+.cabecera-entrenamiento {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cabecera-entrenamiento h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.fecha-entrenamiento {
+  color: gray;
+  font-size: 13px;
+}
+
+.badge-activo {
+  color: #4f7fff;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.badge-completado {
+  color: #4caf50;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* SELECTOR MUSCULOS */
+.seccion-añadir {
+  background-color: #1e1e1e;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #333;
+}
+
+.label-seccion {
+  color: #aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px 0;
+}
+
+.lista-musculos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-musculo {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #444;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.chip-musculo:hover {
+  background-color: #1a2a4a;
+  border-color: #3153b7;
+  color: #4f7fff;
+}
+
+.cabecera-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.boton-cancelar {
+  background: none;
+  border: 1px solid #555;
+  color: #aaa;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.boton-cancelar:hover {
+  border-color: #aaa;
+  color: white;
+}
+
+.lista-ejercicios-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.item-ejercicio-selector {
+  background-color: #242424;
+  border: 1px solid #333;
+  border-left: 4px solid #3153b7;
+  color: white;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  text-align: left;
+}
+
+.item-ejercicio-selector:hover {
+  background-color: #2a2a2a;
+}
+
+.badge-dificultad {
+  font-size: 11px;
+  color: #888;
+}
+
+/* EJERCICIOS */
+.lista-ejercicios {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sin-ejercicios {
+  text-align: center;
+  color: gray;
+  padding: 30px;
+}
+
+.tarjeta-ejercicio {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+}
+
+.cabecera-ejercicio {
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.ejercicio-nombre {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.ejercicio-acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.botones-orden {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.boton-orden {
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 2px 7px;
+  cursor: pointer;
+  font-size: 10px;
+  border-radius: 3px;
+}
+
+.boton-orden:hover:not(:disabled) {
+  background-color: #3153b7;
+  border-color: #3153b7;
+  color: white;
+}
+
+.boton-orden:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.boton-eliminar-ejercicio {
+  background: none;
+  border: 1px solid #555;
+  color: #888;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.boton-eliminar-ejercicio:hover {
+  background-color: #441818;
+  border-color: red;
+  color: #ff7777;
+}
+
+.lista-series {
+  padding: 8px 14px;
+}
+
+.cabecera-series {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 1fr 30px;
+  color: #666;
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 4px 0;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 6px;
+}
+
+.fila-serie {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 1fr 30px;
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid #1a1a1a;
+  align-items: center;
+}
+
+.numero-serie {
+  color: #4f7fff;
+  font-size: 13px;
+}
+
+.boton-eliminar-serie {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
+
+.boton-eliminar-serie:hover {
+  color: #ff7777;
+}
+
+.formulario-serie {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  background-color: #242424;
+  align-items: center;
+}
+
+.formulario-serie input {
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 70px;
+  text-align: center;
+  outline: none;
+}
+
+.formulario-serie input:focus {
+  border-color: #3153b7;
+}
+
+.formulario-serie input::placeholder {
+  color: #666;
+  font-size: 12px;
+}
+
+.boton-añadir-serie {
+  background-color: #1a2a4a;
+  color: #4f7fff;
+  border: 1px solid #3153b7;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.boton-añadir-serie:hover {
+  background-color: #3153b7;
+  color: white;
+}
+
+/* BOTONES FINALES */
+.botones-finales {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.boton-finalizar {
+  width: 100%;
+  background-color: #1a3a1a;
+  color: #4caf50;
+  border: 1px solid #2a5a2a;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-finalizar:hover {
+  background-color: #1f4a1f;
+}
+
+.boton-eliminar {
+  width: 100%;
+  background: none;
+  color: #888;
+  border: 1px solid #444;
+  padding: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-eliminar:hover {
+  background-color: #441818;
+  border-color: red;
+  color: #ff7777;
+}
+
+@media (max-width: 400px) {
+  .formulario-serie {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    padding: 8px 10px;
+  }
+
+  .boton-añadir-serie {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .cabecera-series {
+    grid-template-columns: 35px 1fr 1fr 1fr 25px;
+    font-size: 10px;
+  }
+
+  .fila-serie {
+    grid-template-columns: 35px 1fr 1fr 1fr 25px;
+    font-size: 13px;
+  }
+
+  .ejercicio-nombre {
+    font-size: 14px;
+  }
+}

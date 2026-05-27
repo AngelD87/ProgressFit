@@ -3,6 +3,8 @@ import PaginaLogin from "./pages/Login/PaginaLogin"
 import PaginaRegistro from "./pages/Registro/PaginaRegistro"
 import PaginaSeleccionAvatar from "./pages/SeleccionAvatar/PaginaSeleccionAvatar"
 import PaginaDashboard from "./pages/Dashboard/PaginaDashboard"
+import PaginaNuevoEntrenamiento from "./pages/NuevoEntrenamiento/PaginaNuevoEntrenamiento"
+import PaginaDetalleEntrenamiento from "./pages/DetalleEntrenamiento/PaginaDetalleEntrenamiento"
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/registro" element={<PaginaRegistro />} />
         <Route path="/seleccionar-avatar" element={<PaginaSeleccionAvatar />} />
         <Route path="/dashboard" element={<PaginaDashboard />} />
+        <Route path="/entrenamientos/nuevo" element={<PaginaNuevoEntrenamiento />} />
+        <Route path="/entrenamientos/:id" element={<PaginaDetalleEntrenamiento />} />
       </Routes>
     </BrowserRouter>
   )

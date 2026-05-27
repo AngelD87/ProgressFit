@@ -1,0 +1,35 @@
+.navbar-inferior {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background-color: #1e1e1e;
+  border-top: 2px solid #3153b7;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+}
+
+.nav-inferior-item {
+  background: none;
+  border: none;
+  color: lightgray;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-inferior-item.activo {
+  color: #4f7fff;
+}
+
+.icono-nav {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}

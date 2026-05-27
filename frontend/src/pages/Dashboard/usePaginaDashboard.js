@@ -5,7 +5,7 @@ import { obtenerEntrenamientos } from "../../services/entrenamientoServicio"
 
 function usePaginaDashboard() {
 
-  const { usuario, logout } = useAuth()
+  const { usuario } = useAuth()
   const navigate = useNavigate()
 
   const [entrenamientos, setEntrenamientos] = useState([])
@@ -25,19 +25,12 @@ function usePaginaDashboard() {
     cargarEntrenamientos()
   }, [usuario.idUsuario])
 
-  const handleLogout = () => {
-    logout()
-    navigate("/login")
-  }
-
-  //TOTAL DE ENTRENAMIENTOS
   const totalEntrenamientos = entrenamientos.length
 
   return {
     usuario,
     entrenamientos,
     cargando,
-    handleLogout,
     navigate,
     totalEntrenamientos
   }

@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+.contenedor-nuevo-entrenamiento {
+  min-height: 100vh;
+  background-color: #111;
+  color: white;
+}
+
+.formulario-nuevo {
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-nuevo {
+  background-color: #441818;
+  color: #ff7777;
+  border: 1px solid red;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grupo-campo label {
+  color: #aaa;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.grupo-campo input {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #444;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.grupo-campo input:focus {
+  border-color: #3153b7;
+}
+
+.grupo-campo input::placeholder {
+  color: #666;
+}
+
+.boton-crear {
+  width: 100%;
+  background-color: #3153b7;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-crear:hover {
+  background-color: #24429b;
+}
+
+.boton-crear:disabled {
+  background-color: #333;
+  color: #666;
+  cursor: not-allowed;
+}

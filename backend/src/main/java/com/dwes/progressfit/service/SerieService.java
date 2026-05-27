@@ -110,11 +110,8 @@ public class SerieService {
     }
 
     public void eliminar(Long id) {
-        Serie serie = serieRepository.findById(id)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("La serie que intentas eliminar no existe"));
-        if (serie.getEntrenamientoEjercicio().getEntrenamiento().getFin() != null) {
-            throw new IllegalStateException("No se pueden eliminar series de un entrenamiento cerrado");
+        if (!serieRepository.existsById(id)) {
+            throw new IllegalArgumentException("La serie que intentas eliminar no existe");
         }
         serieRepository.deleteById(id);
     }
