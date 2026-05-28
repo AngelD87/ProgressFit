@@ -571,6 +571,28 @@
   background-color: #2a2a2a;
 }
 
+.error-modal {
+  background-color: #441818;
+  color: #ff7777;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.error-pagina {
+  background-color: #441818;
+  color: #ff7777;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: center;
+}
+
 @media (max-width: 400px) {
   .formulario-serie {
     display: grid;

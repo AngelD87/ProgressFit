@@ -21,6 +21,8 @@ function usePaginaDetalleEntrenamiento() {
   const [valoracion, setValoracion] = useState(0)
   const [fatigaPercibida, setFatigaPercibida] = useState(5)
   const [comentario, setComentario] = useState("")
+  const [errorModal, setErrorModal] = useState("")
+  const [errorPagina, setErrorPagina] = useState("")
 
   const cargarEntrenamiento = useCallback(async () => {
     try {
@@ -148,50 +150,65 @@ function usePaginaDetalleEntrenamiento() {
   }
 
   const handleAbrirValoracion = () => {
+    if (!entrenamiento?.ejercicios || entrenamiento.ejercicios.length === 0) {
+      setErrorPagina("No puedes finalizar un entrenamiento sin ejercicios")
+      return
+    }
+    setErrorPagina("")
     setValoracion(entrenamiento?.valoracion || 0)
     setFatigaPercibida(entrenamiento?.fatigaPercibida || 5)
     setComentario(entrenamiento?.comentario || "")
+    setErrorModal("")
     setMostrarModalValoracion(true)
   }
 
-  const handleFinalizarSinValorar = async () => {
-    try {
-      await cerrarEntrenamiento(parseInt(id), {})
-      navigate("/dashboard")
-    } catch (err) {
-      console.error("Error al finalizar entrenamiento", err)
-      alert(err.response?.data?.message || "Error al finalizar")
-    }
+const handleFinalizarSinValorar = async () => {
+  if (!entrenamiento?.ejercicios || entrenamiento.ejercicios.length === 0) {
+    setErrorPagina("No puedes finalizar un entrenamiento sin ejercicios")
+    return
   }
+  try {
+    await cerrarEntrenamiento(parseInt(id), {})
+    navigate("/dashboard")
+  } catch (err) {
+    setErrorPagina(err.response?.data?.message || "Error al finalizar")
+  }
+}
 
-  const handleFinalizarConValoracion = async () => {
-    try {
-      await cerrarEntrenamiento(parseInt(id), {
-        valoracion: valoracion || null,
-        fatigaPercibida: fatigaPercibida || null,
-        comentario: comentario || null
-      })
-      navigate("/dashboard")
-    } catch (err) {
-      console.error("Error al finalizar entrenamiento", err)
-      alert(err.response?.data?.message || "Error al finalizar")
-    }
+const handleFinalizarConValoracion = async () => {
+  if (!valoracion || valoracion === 0) {
+    setErrorModal("Selecciona una valoración con las estrellas")
+    return
   }
+  try {
+    await cerrarEntrenamiento(parseInt(id), {
+      valoracion: valoracion,
+      fatigaPercibida: fatigaPercibida,
+      comentario: comentario || null
+    })
+    navigate("/dashboard")
+  } catch (err) {
+    setErrorModal(err.response?.data?.message || "Error al finalizar")
+  }
+}
 
-  const handleGuardarValoracion = async () => {
-    try {
-      await valorarEntrenamiento(parseInt(id), {
-        valoracion: valoracion || null,
-        fatigaPercibida: fatigaPercibida || null,
-        comentario: comentario || null
-      })
-      setMostrarModalValoracion(false)
-      await cargarEntrenamiento()
-    } catch (err) {
-      console.error("Error al valorar entrenamiento", err)
-      alert(err.response?.data?.message || "Error al valorar")
-    }
+const handleGuardarValoracion = async () => {
+  if (!valoracion || valoracion === 0) {
+    setErrorModal("Selecciona una valoración con las estrellas")
+    return
   }
+  try {
+    await valorarEntrenamiento(parseInt(id), {
+      valoracion: valoracion,
+      fatigaPercibida: fatigaPercibida,
+      comentario: comentario || null
+    })
+    setMostrarModalValoracion(false)
+    await cargarEntrenamiento()
+  } catch (err) {
+    setErrorModal(err.response?.data?.message || "Error al valorar")
+  }
+}
 
   const handleEliminar = async () => {
     try {
@@ -199,7 +216,6 @@ function usePaginaDetalleEntrenamiento() {
       navigate("/dashboard")
     } catch (err) {
       console.error("Error al eliminar entrenamiento", err)
-      alert(err.response?.data?.message || "Error al eliminar")
     }
   }
 
@@ -227,6 +243,8 @@ function usePaginaDetalleEntrenamiento() {
     setFatigaPercibida,
     comentario,
     setComentario,
+    errorModal,
+    errorPagina,
     handleAbrirValoracion,
     handleFinalizarSinValorar,
     handleFinalizarConValoracion,

@@ -6,7 +6,7 @@ import NavbarInferior from "../../components/NavbarInferior/NavbarInferior"
 
 function PaginaDetalleEntrenamiento() {
 
-const {
+  const {
     entrenamiento,
     cargando,
     musculos,
@@ -30,6 +30,8 @@ const {
     setFatigaPercibida,
     comentario,
     setComentario,
+    errorModal,
+    errorPagina,
     handleAbrirValoracion,
     handleFinalizarSinValorar,
     handleFinalizarConValoracion,
@@ -240,11 +242,17 @@ const {
           ))}
         </div>
 
+        {errorPagina && (
+  <div className="error-pagina">
+    {errorPagina}
+  </div>
+)}
+
         {/*BOTONES FINALES - ENTRENAMIENTO ABIERTO*/}
         {!entrenamiento?.fin && (
           <div className="botones-finales">
             <button className="boton-finalizar" onClick={handleAbrirValoracion}>
-               Finalizar entrenamiento
+              Finalizar entrenamiento
             </button>
             <button className="boton-finalizar-sin-valorar" onClick={handleFinalizarSinValorar}>
               Guardar sin valorar
@@ -335,6 +343,12 @@ const {
                 rows={3}
               />
             </div>
+
+            {errorModal && (
+              <div className="error-modal">
+                {errorModal}
+              </div>
+            )}
 
             <div className="modal-botones">
               {!entrenamiento?.fin ? (
