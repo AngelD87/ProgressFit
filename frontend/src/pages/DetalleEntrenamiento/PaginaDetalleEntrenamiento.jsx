@@ -6,7 +6,7 @@ import NavbarInferior from "../../components/NavbarInferior/NavbarInferior"
 
 function PaginaDetalleEntrenamiento() {
 
-  const {
+const {
     entrenamiento,
     cargando,
     musculos,
@@ -21,11 +21,21 @@ function PaginaDetalleEntrenamiento() {
     handleMoverAbajo,
     handleAñadirSerie,
     handleEliminarSerie,
-    handleFinalizar,
-    handleEliminar
+    handleEliminar,
+    mostrarModalValoracion,
+    setMostrarModalValoracion,
+    valoracion,
+    setValoracion,
+    fatigaPercibida,
+    setFatigaPercibida,
+    comentario,
+    setComentario,
+    handleAbrirValoracion,
+    handleFinalizarSinValorar,
+    handleFinalizarConValoracion,
+    handleGuardarValoracion
   } = usePaginaDetalleEntrenamiento()
 
-  //FORMULARIO DE SERIE POR CADA EJERCICIO
   const [serieForm, setSerieForm] = useState({})
 
   const handleCambioSerie = (idEntrenamientoEjercicio, campo, valor) => {
@@ -85,10 +95,9 @@ function PaginaDetalleEntrenamiento() {
           )}
         </div>
 
-        {/*SELECTOR DE MUSCULOS - SI NO ESTA CERRADO*/}
+        {/*SELECTOR DE MUSCULOS*/}
         {!entrenamiento?.fin && (
           <div className="seccion-añadir">
-
             {!mostrarSelectorEjercicio ? (
               <>
                 <p className="label-seccion">Selecciona un músculo</p>
@@ -142,7 +151,6 @@ function PaginaDetalleEntrenamiento() {
           {entrenamiento?.ejercicios?.map((ejercicio, index) => (
             <div key={ejercicio.idEntrenamientoEjercicio} className="tarjeta-ejercicio">
 
-              {/*CABECERA DEL EJERCICIO*/}
               <div className="cabecera-ejercicio">
                 <div className="ejercicio-info">
                   <span className="ejercicio-nombre">{ejercicio.nombreEjercicio}</span>
@@ -174,7 +182,6 @@ function PaginaDetalleEntrenamiento() {
                 </div>
               </div>
 
-              {/*SERIES*/}
               <div className="lista-series">
                 <div className="cabecera-series">
                   <span>Serie</span>
@@ -201,7 +208,6 @@ function PaginaDetalleEntrenamiento() {
                 ))}
               </div>
 
-              {/*FORMULARIO NUEVA SERIE*/}
               {!entrenamiento?.fin && (
                 <div className="formulario-serie">
                   <input
@@ -234,11 +240,14 @@ function PaginaDetalleEntrenamiento() {
           ))}
         </div>
 
-        {/*BOTONES FINALES*/}
+        {/*BOTONES FINALES - ENTRENAMIENTO ABIERTO*/}
         {!entrenamiento?.fin && (
           <div className="botones-finales">
-            <button className="boton-finalizar" onClick={handleFinalizar}>
-              ✓ Finalizar entrenamiento
+            <button className="boton-finalizar" onClick={handleAbrirValoracion}>
+               Finalizar entrenamiento
+            </button>
+            <button className="boton-finalizar-sin-valorar" onClick={handleFinalizarSinValorar}>
+              Guardar sin valorar
             </button>
             <button className="boton-eliminar" onClick={handleEliminar}>
               Eliminar entrenamiento
@@ -246,7 +255,112 @@ function PaginaDetalleEntrenamiento() {
           </div>
         )}
 
+        {/*BOTON VALORAR - ENTRENAMIENTO CERRADO*/}
+        {entrenamiento?.fin && (
+          <div className="botones-finales">
+            <button className="boton-valorar" onClick={handleAbrirValoracion}>
+              {entrenamiento?.valoracion ? "Editar valoración" : "+ Añadir valoración"}
+            </button>
+          </div>
+        )}
+
+        {/*VALORACION ACTUAL SI EXISTE*/}
+        {entrenamiento?.fin && entrenamiento?.valoracion && (
+          <div className="seccion-valoracion">
+            <p className="label-seccion">Valoración</p>
+            <div className="valoracion-estrellas">
+              {[1, 2, 3, 4, 5].map(n => (
+                <span key={n} className={n <= entrenamiento.valoracion ? "estrella-llena" : "estrella-vacia"}>
+                  ★
+                </span>
+              ))}
+            </div>
+            {entrenamiento?.fatigaPercibida && (
+              <p className="valoracion-dato">
+                Fatiga: <span>{entrenamiento.fatigaPercibida}/10</span>
+              </p>
+            )}
+            {entrenamiento?.comentario && (
+              <p className="valoracion-comentario">{entrenamiento.comentario}</p>
+            )}
+          </div>
+        )}
+
       </main>
+
+      {/*MODAL DE VALORACION*/}
+      {mostrarModalValoracion && (
+        <div className="modal-overlay" onClick={() => setMostrarModalValoracion(false)}>
+          <div className="modal-valoracion" onClick={e => e.stopPropagation()}>
+
+            <h2>¿Cómo fue el entrenamiento?</h2>
+
+            <div className="modal-campo">
+              <label>Valoración</label>
+              <div className="selector-estrellas">
+                {[1, 2, 3, 4, 5].map(n => (
+                  <button
+                    key={n}
+                    className={`estrella-btn ${n <= valoracion ? "activa" : ""}`}
+                    onClick={() => setValoracion(n)}>
+                    ★
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="modal-campo">
+              <label>Fatiga percibida: <span className="fatiga-valor">{fatigaPercibida}/10</span></label>
+              <input
+                type="range"
+                min="1"
+                max="10"
+                value={fatigaPercibida}
+                onChange={e => setFatigaPercibida(parseInt(e.target.value))}
+                className="slider-fatiga"
+              />
+              <div className="slider-labels">
+                <span>Fresco</span>
+                <span>Agotado</span>
+              </div>
+            </div>
+
+            <div className="modal-campo">
+              <label>Comentario (opcional)</label>
+              <textarea
+                placeholder="¿Cómo te has sentido?"
+                value={comentario}
+                onChange={e => setComentario(e.target.value)}
+                className="textarea-comentario"
+                rows={3}
+              />
+            </div>
+
+            <div className="modal-botones">
+              {!entrenamiento?.fin ? (
+                <>
+                  <button className="modal-btn-confirmar" onClick={handleFinalizarConValoracion}>
+                    Finalizar y guardar
+                  </button>
+                  <button className="modal-btn-cancelar" onClick={() => setMostrarModalValoracion(false)}>
+                    Cancelar
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button className="modal-btn-confirmar" onClick={handleGuardarValoracion}>
+                    Guardar valoración
+                  </button>
+                  <button className="modal-btn-cancelar" onClick={() => setMostrarModalValoracion(false)}>
+                    Cancelar
+                  </button>
+                </>
+              )}
+            </div>
+
+          </div>
+        </div>
+      )}
 
       <NavbarInferior />
 

@@ -28,3 +28,9 @@ export const cerrarEntrenamiento = async (id, datos) => {
 export const eliminarEntrenamiento = async (id) => {
   await api.delete(`/entrenamientos/${id}`)
 }
+
+//VALORAR ENTRENAMIENTO YA CERRADO
+export const valorarEntrenamiento = async (id, datos) => {
+  const response = await api.put(`/entrenamientos/${id}/valorar`, datos)
+  return response.data
+}

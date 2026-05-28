@@ -13,5 +13,6 @@ public class EntrenamientoResponseDTO {
     private LocalDateTime inicio;
     private LocalDateTime fin;
     private Integer valoracion;
+    private Integer fatigaPercibida;
     private String comentario;
 }

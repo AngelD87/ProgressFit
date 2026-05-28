@@ -29,6 +29,8 @@ public class Entrenamiento {
 
     private Integer valoracion;
 
+    private Integer fatigaPercibida;
+
     @Column(columnDefinition = "TEXT")
     private String comentario;
 

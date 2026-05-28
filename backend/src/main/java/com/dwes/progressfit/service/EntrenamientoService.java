@@ -39,6 +39,7 @@ public class EntrenamientoService {
                 .inicio(e.getInicio())
                 .fin(e.getFin())
                 .valoracion(e.getValoracion())
+                .fatigaPercibida(e.getFatigaPercibida())
                 .comentario(e.getComentario())
                 .build();
     }
@@ -100,8 +101,12 @@ public class EntrenamientoService {
         if (dto.getValoracion() != null && (dto.getValoracion() < 1 || dto.getValoracion() > 5)) {
             throw new IllegalArgumentException("La valoración debe estar entre 1 y 5");
         }
+        if (dto.getFatigaPercibida() != null && (dto.getFatigaPercibida() < 1 || dto.getFatigaPercibida() > 10)) {
+            throw new IllegalArgumentException("La fatiga debe estar entre 1 y 10");
+        }
         entrenamiento.setFin(LocalDateTime.now());
         entrenamiento.setValoracion(dto.getValoracion());
+        entrenamiento.setFatigaPercibida(dto.getFatigaPercibida());
         entrenamiento.setComentario(dto.getComentario());
         Entrenamiento actualizado = entrenamientoRepository.save(entrenamiento);
         return toResponseDTO(actualizado);
@@ -143,9 +148,30 @@ public class EntrenamientoService {
                 .inicio(entrenamiento.getInicio())
                 .fin(entrenamiento.getFin())
                 .valoracion(entrenamiento.getValoracion())
+                .fatigaPercibida(entrenamiento.getFatigaPercibida())
                 .comentario(entrenamiento.getComentario())
                 .ejercicios(ejerciciosDTO)
                 .build();
+    }
+
+    public EntrenamientoResponseDTO valorarEntrenamiento(Long id, EntrenamientoCerrarDTO dto) {
+        Entrenamiento entrenamiento = entrenamientoRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("El entrenamiento no existe"));
+        if (entrenamiento.getFin() == null) {
+            throw new IllegalStateException("El entrenamiento no está cerrado todavía");
+        }
+        if (dto.getValoracion() != null && (dto.getValoracion() < 1 || dto.getValoracion() > 5)) {
+            throw new IllegalArgumentException("La valoración debe estar entre 1 y 5");
+        }
+        if (dto.getFatigaPercibida() != null && (dto.getFatigaPercibida() < 1 || dto.getFatigaPercibida() > 10)) {
+            throw new IllegalArgumentException("La fatiga debe estar entre 1 y 10");
+        }
+        entrenamiento.setValoracion(dto.getValoracion());
+        entrenamiento.setFatigaPercibida(dto.getFatigaPercibida());
+        entrenamiento.setComentario(dto.getComentario());
+        Entrenamiento actualizado = entrenamientoRepository.save(entrenamiento);
+        return toResponseDTO(actualizado);
     }
 
     public void eliminar(Long id) {

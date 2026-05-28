@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { obtenerEntrenamientoCompleto, cerrarEntrenamiento, eliminarEntrenamiento } from "../../services/entrenamientoServicio"
+import { obtenerEntrenamientoCompleto, cerrarEntrenamiento, eliminarEntrenamiento, valorarEntrenamiento } from "../../services/entrenamientoServicio"
 import { obtenerMusculos } from "../../services/musculoServicio"
 import { obtenerEjerciciosPorMusculo } from "../../services/ejercicioServicio"
 import { añadirEjercicio, eliminarEjercicioDeEntrenamiento, actualizarEjercicioEntrenamiento } from "../../services/entrenamientoEjercicioServicio"
@@ -17,6 +17,10 @@ function usePaginaDetalleEntrenamiento() {
   const [musculoSeleccionado, setMusculoSeleccionado] = useState(null)
   const [ejerciciosMusculo, setEjerciciosMusculo] = useState([])
   const [mostrarSelectorEjercicio, setMostrarSelectorEjercicio] = useState(false)
+  const [mostrarModalValoracion, setMostrarModalValoracion] = useState(false)
+  const [valoracion, setValoracion] = useState(0)
+  const [fatigaPercibida, setFatigaPercibida] = useState(5)
+  const [comentario, setComentario] = useState("")
 
   const cargarEntrenamiento = useCallback(async () => {
     try {
@@ -83,39 +87,37 @@ function usePaginaDetalleEntrenamiento() {
     }
   }
 
-//MOVER EJERCICIO ARRIBA
-const handleMoverArriba = async (index) => {
-  if (index === 0) return
-  const ejercicios = entrenamiento.ejercicios
-  const actual = ejercicios[index]
-  const anterior = ejercicios[index - 1]
-  const ordenTemporal = 9999
-  try {
-    await actualizarEjercicioEntrenamiento(actual.idEntrenamientoEjercicio, { orden: ordenTemporal })
-    await actualizarEjercicioEntrenamiento(anterior.idEntrenamientoEjercicio, { orden: actual.orden })
-    await actualizarEjercicioEntrenamiento(actual.idEntrenamientoEjercicio, { orden: anterior.orden })
-    await cargarEntrenamiento()
-  } catch (err) {
-    console.error("Error al mover ejercicio", err)
+  const handleMoverArriba = async (index) => {
+    if (index === 0) return
+    const ejercicios = entrenamiento.ejercicios
+    const actual = ejercicios[index]
+    const anterior = ejercicios[index - 1]
+    const ordenTemporal = 9999
+    try {
+      await actualizarEjercicioEntrenamiento(actual.idEntrenamientoEjercicio, { orden: ordenTemporal })
+      await actualizarEjercicioEntrenamiento(anterior.idEntrenamientoEjercicio, { orden: actual.orden })
+      await actualizarEjercicioEntrenamiento(actual.idEntrenamientoEjercicio, { orden: anterior.orden })
+      await cargarEntrenamiento()
+    } catch (err) {
+      console.error("Error al mover ejercicio", err)
+    }
   }
-}
 
-//MOVER EJERCICIO ABAJO
-const handleMoverAbajo = async (index) => {
-  if (index === entrenamiento.ejercicios.length - 1) return
-  const ejercicios = entrenamiento.ejercicios
-  const actual = ejercicios[index]
-  const siguiente = ejercicios[index + 1]
-  const ordenTemporal = 9999
-  try {
-    await actualizarEjercicioEntrenamiento(actual.idEntrenamientoEjercicio, { orden: ordenTemporal })
-    await actualizarEjercicioEntrenamiento(siguiente.idEntrenamientoEjercicio, { orden: actual.orden })
-    await actualizarEjercicioEntrenamiento(actual.idEntrenamientoEjercicio, { orden: siguiente.orden })
-    await cargarEntrenamiento()
-  } catch (err) {
-    console.error("Error al mover ejercicio", err)
+  const handleMoverAbajo = async (index) => {
+    if (index === entrenamiento.ejercicios.length - 1) return
+    const ejercicios = entrenamiento.ejercicios
+    const actual = ejercicios[index]
+    const siguiente = ejercicios[index + 1]
+    const ordenTemporal = 9999
+    try {
+      await actualizarEjercicioEntrenamiento(actual.idEntrenamientoEjercicio, { orden: ordenTemporal })
+      await actualizarEjercicioEntrenamiento(siguiente.idEntrenamientoEjercicio, { orden: actual.orden })
+      await actualizarEjercicioEntrenamiento(actual.idEntrenamientoEjercicio, { orden: siguiente.orden })
+      await cargarEntrenamiento()
+    } catch (err) {
+      console.error("Error al mover ejercicio", err)
+    }
   }
-}
 
   const handleAñadirSerie = async (idEntrenamientoEjercicio, peso, repeticiones, rir) => {
     try {
@@ -145,13 +147,49 @@ const handleMoverAbajo = async (index) => {
     }
   }
 
-  const handleFinalizar = async () => {
+  const handleAbrirValoracion = () => {
+    setValoracion(entrenamiento?.valoracion || 0)
+    setFatigaPercibida(entrenamiento?.fatigaPercibida || 5)
+    setComentario(entrenamiento?.comentario || "")
+    setMostrarModalValoracion(true)
+  }
+
+  const handleFinalizarSinValorar = async () => {
     try {
       await cerrarEntrenamiento(parseInt(id), {})
       navigate("/dashboard")
     } catch (err) {
       console.error("Error al finalizar entrenamiento", err)
       alert(err.response?.data?.message || "Error al finalizar")
+    }
+  }
+
+  const handleFinalizarConValoracion = async () => {
+    try {
+      await cerrarEntrenamiento(parseInt(id), {
+        valoracion: valoracion || null,
+        fatigaPercibida: fatigaPercibida || null,
+        comentario: comentario || null
+      })
+      navigate("/dashboard")
+    } catch (err) {
+      console.error("Error al finalizar entrenamiento", err)
+      alert(err.response?.data?.message || "Error al finalizar")
+    }
+  }
+
+  const handleGuardarValoracion = async () => {
+    try {
+      await valorarEntrenamiento(parseInt(id), {
+        valoracion: valoracion || null,
+        fatigaPercibida: fatigaPercibida || null,
+        comentario: comentario || null
+      })
+      setMostrarModalValoracion(false)
+      await cargarEntrenamiento()
+    } catch (err) {
+      console.error("Error al valorar entrenamiento", err)
+      alert(err.response?.data?.message || "Error al valorar")
     }
   }
 
@@ -180,8 +218,19 @@ const handleMoverAbajo = async (index) => {
     handleMoverAbajo,
     handleAñadirSerie,
     handleEliminarSerie,
-    handleFinalizar,
     handleEliminar,
+    mostrarModalValoracion,
+    setMostrarModalValoracion,
+    valoracion,
+    setValoracion,
+    fatigaPercibida,
+    setFatigaPercibida,
+    comentario,
+    setComentario,
+    handleAbrirValoracion,
+    handleFinalizarSinValorar,
+    handleFinalizarConValoracion,
+    handleGuardarValoracion,
     navigate
   }
 }

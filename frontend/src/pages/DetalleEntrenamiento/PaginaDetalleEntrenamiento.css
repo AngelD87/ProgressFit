@@ -352,6 +352,225 @@
   color: #ff7777;
 }
 
+/* VALORACION */
+.seccion-valoracion {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.valoracion-estrellas {
+  display: flex;
+  gap: 5px;
+  margin: 8px 0;
+}
+
+.estrella-llena {
+  color: #f5c518;
+  font-size: 22px;
+}
+
+.estrella-vacia {
+  color: #444;
+  font-size: 22px;
+}
+
+.valoracion-dato {
+  color: #aaa;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.valoracion-dato span {
+  color: white;
+  font-weight: bold;
+}
+
+.valoracion-comentario {
+  color: #ccc;
+  font-size: 14px;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.boton-finalizar-sin-valorar {
+  width: 100%;
+  background: none;
+  color: #aaa;
+  border: 1px solid #444;
+  padding: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.boton-finalizar-sin-valorar:hover {
+  background-color: #2a2a2a;
+  border-color: #666;
+}
+
+.boton-valorar {
+  width: 100%;
+  background-color: #1a2a4a;
+  color: #4f7fff;
+  border: 1px solid #3153b7;
+  padding: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.boton-valorar:hover {
+  background-color: #3153b7;
+  color: white;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  padding: 20px;
+}
+
+.modal-valoracion {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-top: 3px solid #3153b7;
+  padding: 25px 20px;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 5px;
+}
+
+.modal-valoracion h2 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+}
+
+.modal-campo {
+  margin-bottom: 20px;
+}
+
+.modal-campo label {
+  display: block;
+  color: #aaa;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.selector-estrellas {
+  display: flex;
+  gap: 8px;
+}
+
+.estrella-btn {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #444;
+  padding: 0;
+  transition: color 0.1s;
+}
+
+.estrella-btn.activa {
+  color: #f5c518;
+}
+
+.estrella-btn:hover {
+  color: #f5c518;
+}
+
+.fatiga-valor {
+  color: white;
+  font-weight: bold;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.slider-fatiga {
+  width: 100%;
+  margin: 8px 0 4px;
+  accent-color: #3153b7;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #666;
+}
+
+.textarea-comentario {
+  width: 100%;
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: none;
+  outline: none;
+}
+
+.textarea-comentario:focus {
+  border-color: #3153b7;
+}
+
+.textarea-comentario::placeholder {
+  color: #666;
+}
+
+.modal-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.modal-btn-confirmar {
+  width: 100%;
+  background-color: #3153b7;
+  color: white;
+  border: none;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.modal-btn-confirmar:hover {
+  background-color: #24429b;
+}
+
+.modal-btn-cancelar {
+  width: 100%;
+  background: none;
+  color: #888;
+  border: 1px solid #444;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.modal-btn-cancelar:hover {
+  background-color: #2a2a2a;
+}
+
 @media (max-width: 400px) {
   .formulario-serie {
     display: grid;
@@ -380,3 +599,4 @@
     font-size: 14px;
   }
 }
+

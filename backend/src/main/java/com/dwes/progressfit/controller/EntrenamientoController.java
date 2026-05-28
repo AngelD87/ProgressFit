@@ -53,6 +53,13 @@ public class EntrenamientoController {
         return ResponseEntity.ok(entrenamientoService.obtenerEntrenamientoCompleto(id));
     }
 
+    @PutMapping("/{id}/valorar")
+    public ResponseEntity<EntrenamientoResponseDTO> valorar(
+            @PathVariable Long id,
+            @RequestBody EntrenamientoCerrarDTO dto) {
+        return ResponseEntity.ok(entrenamientoService.valorarEntrenamiento(id, dto));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         entrenamientoService.eliminar(id);
