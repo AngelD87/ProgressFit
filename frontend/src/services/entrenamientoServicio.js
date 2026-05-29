@@ -34,3 +34,9 @@ export const valorarEntrenamiento = async (id, datos) => {
   const response = await api.put(`/entrenamientos/${id}/valorar`, datos)
   return response.data
 }
+
+//OBTENER TODOS LOS ENTRENAMIENTOS COMPLETOS DEL USUARIO
+export const obtenerEntrenamientosCompletos = async (idUsuario) => {
+  const response = await api.get(`/entrenamientos/usuario/${idUsuario}/completos`)
+  return response.data
+}

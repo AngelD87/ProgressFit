@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+.contenedor-estadisticas {
+  min-height: 100vh;
+  background-color: #111;
+  color: white;
+}
+
+.contenido-estadisticas {
+  padding: 18px 15px 100px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.titulo-estadisticas {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.texto-cargando {
+  text-align: center;
+  color: gray;
+  padding: 40px;
+}
+
+.seccion-grafica {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+  padding: 15px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.seccion-grafica h2 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.descripcion-grafica {
+  color: #aaa;
+  font-size: 12px;
+  margin: 0 0 15px 0;
+}
+
+.sin-datos {
+  text-align: center;
+  color: gray;
+  padding: 30px 0;
+  font-size: 14px;
+}
+
+/* SELECTOR EJERCICIO */
+.selector-ejercicio {
+  width: 100%;
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  outline: none;
+  cursor: pointer;
+}
+
+.selector-ejercicio:focus {
+  border-color: #3153b7;
+}
+
+.selector-ejercicio option {
+  background-color: #2b2b2b;
+}
+
+/* MOVIL NORMAL */
+@media (max-width: 480px) {
+  .titulo-estadisticas {
+    font-size: 18px;
+  }
+
+  .seccion-grafica {
+    padding: 12px 8px;
+  }
+
+  .seccion-grafica h2 {
+    font-size: 14px;
+  }
+
+  .descripcion-grafica {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  .selector-ejercicio {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .seccion-grafica {
+    padding: 10px 6px;
+  }
+
+  .seccion-grafica h2 {
+    font-size: 13px;
+  }
+
+  .selector-ejercicio {
+    font-size: 12px;
+    padding: 7px;
+  }
+}

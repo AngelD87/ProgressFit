@@ -44,6 +44,35 @@ public class EntrenamientoService {
                 .build();
     }
 
+    //DTO COMPLETO DE UN EJERCICIO
+    private EntrenamientoEjercicioCompletoDTO toEjercicioCompletoDTO(EntrenamientoEjercicio ee) {
+        List<SerieSimpleDTO> seriesDTO = serieRepository
+                .findByEntrenamientoEjercicioIdEntrenamientoEjercicioOrderByNumeroSerie(
+                        ee.getIdEntrenamientoEjercicio())
+                .stream()
+                .map(s -> SerieSimpleDTO.builder()
+                        .idSerie(s.getIdSerie())
+                        .numeroSerie(s.getNumeroSerie())
+                        .repeticiones(s.getRepeticiones())
+                        .peso(s.getPeso())
+                        .rir(s.getRir())
+                        .build())
+                .toList();
+
+        return EntrenamientoEjercicioCompletoDTO.builder()
+                .idEntrenamientoEjercicio(ee.getIdEntrenamientoEjercicio())
+                .idEjercicio(ee.getEjercicio().getIdEjercicio())
+                .nombreEjercicio(ee.getEjercicio().getNombre())
+                .idMusculo(ee.getEjercicio().getMusculo().getIdMusculo())
+                .nombreMusculo(ee.getEjercicio().getMusculo().getNombre())
+                .orden(ee.getOrden())
+                .notas(ee.getNotas())
+                .series(seriesDTO)
+                .build();
+    }
+
+    // ─── CRUD BÁSICO ────────────────────────────────────────────────────────────
+
     public EntrenamientoResponseDTO crearEntrenamientoDTO(EntrenamientoCreateDTO dto) {
         Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
                 .orElseThrow(() ->
@@ -85,6 +114,7 @@ public class EntrenamientoService {
         return toResponseDTO(entrenamiento);
     }
 
+    //CERRAR / VALORAR
     public EntrenamientoResponseDTO cerrarEntrenamientoDesdeDTO(
             Long idEntrenamiento, EntrenamientoCerrarDTO dto) {
         Entrenamiento entrenamiento = entrenamientoRepository.findById(idEntrenamiento)
@@ -112,48 +142,6 @@ public class EntrenamientoService {
         return toResponseDTO(actualizado);
     }
 
-    public EntrenamientoCompletoDTO obtenerEntrenamientoCompleto(Long idEntrenamiento) {
-        Entrenamiento entrenamiento = entrenamientoRepository.findById(idEntrenamiento)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("El entrenamiento no existe"));
-        List<EntrenamientoEjercicio> ejercicios =
-                entrenamientoEjercicioRepository
-                        .findByEntrenamientoIdEntrenamientoOrderByOrden(idEntrenamiento);
-        List<EntrenamientoEjercicioCompletoDTO> ejerciciosDTO = ejercicios.stream()
-                .map(ee -> EntrenamientoEjercicioCompletoDTO.builder()
-                        .idEntrenamientoEjercicio(ee.getIdEntrenamientoEjercicio())
-                        .idEjercicio(ee.getEjercicio().getIdEjercicio())
-                        .nombreEjercicio(ee.getEjercicio().getNombre())
-                        .orden(ee.getOrden())
-                        .notas(ee.getNotas())
-                        .series(
-                                serieRepository
-                                        .findByEntrenamientoEjercicioIdEntrenamientoEjercicioOrderByNumeroSerie(
-                                                ee.getIdEntrenamientoEjercicio())
-                                        .stream()
-                                        .map(s -> SerieSimpleDTO.builder()
-                                                .idSerie(s.getIdSerie())
-                                                .numeroSerie(s.getNumeroSerie())
-                                                .repeticiones(s.getRepeticiones())
-                                                .peso(s.getPeso())
-                                                .rir(s.getRir())
-                                                .build())
-                                        .toList()
-                        )
-                        .build())
-                .toList();
-        return EntrenamientoCompletoDTO.builder()
-                .idEntrenamiento(entrenamiento.getIdEntrenamiento())
-                .nombre(entrenamiento.getNombre())
-                .inicio(entrenamiento.getInicio())
-                .fin(entrenamiento.getFin())
-                .valoracion(entrenamiento.getValoracion())
-                .fatigaPercibida(entrenamiento.getFatigaPercibida())
-                .comentario(entrenamiento.getComentario())
-                .ejercicios(ejerciciosDTO)
-                .build();
-    }
-
     public EntrenamientoResponseDTO valorarEntrenamiento(Long id, EntrenamientoCerrarDTO dto) {
         Entrenamiento entrenamiento = entrenamientoRepository.findById(id)
                 .orElseThrow(() ->
@@ -174,6 +162,57 @@ public class EntrenamientoService {
         return toResponseDTO(actualizado);
     }
 
+    //ENTRENAMIENTOS COMPLETOS
+
+    public EntrenamientoCompletoDTO obtenerEntrenamientoCompleto(Long idEntrenamiento) {
+        Entrenamiento entrenamiento = entrenamientoRepository.findById(idEntrenamiento)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("El entrenamiento no existe"));
+        List<EntrenamientoEjercicio> ejercicios =
+                entrenamientoEjercicioRepository
+                        .findByEntrenamientoIdEntrenamientoOrderByOrden(idEntrenamiento);
+        List<EntrenamientoEjercicioCompletoDTO> ejerciciosDTO = ejercicios.stream()
+                .map(this::toEjercicioCompletoDTO)
+                .toList();
+        return EntrenamientoCompletoDTO.builder()
+                .idEntrenamiento(entrenamiento.getIdEntrenamiento())
+                .nombre(entrenamiento.getNombre())
+                .inicio(entrenamiento.getInicio())
+                .fin(entrenamiento.getFin())
+                .valoracion(entrenamiento.getValoracion())
+                .fatigaPercibida(entrenamiento.getFatigaPercibida())
+                .comentario(entrenamiento.getComentario())
+                .ejercicios(ejerciciosDTO)
+                .build();
+    }
+
+    public List<EntrenamientoCompletoDTO> listarCompletoPorUsuario(Long idUsuario) {
+        return entrenamientoRepository.findByUsuarioIdUsuario(idUsuario)
+                .stream()
+                .filter(e -> e.getFin() != null)
+                .map(e -> {
+                    List<EntrenamientoEjercicio> ejercicios =
+                            entrenamientoEjercicioRepository
+                                    .findByEntrenamientoIdEntrenamientoOrderByOrden(
+                                            e.getIdEntrenamiento());
+                    List<EntrenamientoEjercicioCompletoDTO> ejerciciosDTO = ejercicios.stream()
+                            .map(this::toEjercicioCompletoDTO)
+                            .toList();
+                    return EntrenamientoCompletoDTO.builder()
+                            .idEntrenamiento(e.getIdEntrenamiento())
+                            .nombre(e.getNombre())
+                            .inicio(e.getInicio())
+                            .fin(e.getFin())
+                            .valoracion(e.getValoracion())
+                            .fatigaPercibida(e.getFatigaPercibida())
+                            .comentario(e.getComentario())
+                            .ejercicios(ejerciciosDTO)
+                            .build();
+                })
+                .toList();
+    }
+
+    //ELIMINAR
     public void eliminar(Long id) {
         Entrenamiento entrenamiento = entrenamientoRepository.findById(id)
                 .orElseThrow(() ->

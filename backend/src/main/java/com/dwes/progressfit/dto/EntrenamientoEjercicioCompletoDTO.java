@@ -10,6 +10,8 @@ public class EntrenamientoEjercicioCompletoDTO {
     private Long idEntrenamientoEjercicio;
     private Long idEjercicio;
     private String nombreEjercicio;
+    private Long idMusculo;
+    private String nombreMusculo;
     private Integer orden;
     private String notas;
     private List<SerieSimpleDTO> series;

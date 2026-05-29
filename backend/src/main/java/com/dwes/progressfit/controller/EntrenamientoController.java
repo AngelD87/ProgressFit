@@ -65,4 +65,12 @@ public class EntrenamientoController {
         entrenamientoService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/usuario/{idUsuario}/completos")
+    public ResponseEntity<List<EntrenamientoCompletoDTO>> listarCompletoPorUsuario(
+            @PathVariable Long idUsuario) {
+        return ResponseEntity.ok(entrenamientoService.listarCompletoPorUsuario(idUsuario));
+    }
+
+
 }

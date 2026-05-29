@@ -5,6 +5,8 @@ import PaginaSeleccionAvatar from "./pages/SeleccionAvatar/PaginaSeleccionAvatar
 import PaginaDashboard from "./pages/Dashboard/PaginaDashboard"
 import PaginaNuevoEntrenamiento from "./pages/NuevoEntrenamiento/PaginaNuevoEntrenamiento"
 import PaginaDetalleEntrenamiento from "./pages/DetalleEntrenamiento/PaginaDetalleEntrenamiento"
+import PaginaEstadisticas from "./pages/Estadisticas/PaginaEstadisticas"
+
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
         <Route path="/dashboard" element={<PaginaDashboard />} />
         <Route path="/entrenamientos/nuevo" element={<PaginaNuevoEntrenamiento />} />
         <Route path="/entrenamientos/:id" element={<PaginaDetalleEntrenamiento />} />
+        <Route path="/estadisticas" element={<PaginaEstadisticas />} />
       </Routes>
+
     </BrowserRouter>
   )
 }
