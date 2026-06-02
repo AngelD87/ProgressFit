@@ -53,6 +53,14 @@
   margin-bottom: 12px;
 }
 
+.tarjeta-estadistica.clickeable {
+  cursor: pointer;
+}
+
+.tarjeta-estadistica.clickeable:hover .estadistica-numero {
+  color: #7aaaff;
+}
+
 .estadistica-numero {
   display: block;
   color: #4f7fff;
@@ -146,6 +154,6 @@
   }
 
   .tarjeta-estadistica {
-    width: 25%;
+    width: 50%;
   }
 }

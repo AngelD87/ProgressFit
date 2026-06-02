@@ -25,14 +25,11 @@ function usePaginaDashboard() {
     cargarEntrenamientos()
   }, [usuario.idUsuario])
 
-  const totalEntrenamientos = entrenamientos.length
-
   return {
     usuario,
     entrenamientos,
     cargando,
-    navigate,
-    totalEntrenamientos
+    navigate
   }
 }
 

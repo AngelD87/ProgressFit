@@ -10,8 +10,7 @@ function PaginaDashboard() {
     usuario,
     entrenamientos,
     cargando,
-    navigate,
-    totalEntrenamientos
+    navigate
   } = usePaginaDashboard()
 
   const avatarUsuario = listaAvatares.find(a => a.id === usuario?.avatar)
@@ -34,21 +33,19 @@ function PaginaDashboard() {
         </div>
 
         <div className="tarjetas-estadisticas">
-          <div className="tarjeta-estadistica">
+          <div
+            className="tarjeta-estadistica clickeable"
+            onClick={() => navigate("/perfil")}>
             <span className="estadistica-numero">
               {usuario?.pesoCorporal ? `${usuario.pesoCorporal}kg` : "-"}
             </span>
-            <span className="estadistica-label">Peso corporal</span>
+            <span className="estadistica-label">Peso</span>
           </div>
           <div className="tarjeta-estadistica">
             <span className="estadistica-numero">
               {usuario?.altura ? `${usuario.altura}m` : "-"}
             </span>
             <span className="estadistica-label">Altura</span>
-          </div>
-          <div className="tarjeta-estadistica">
-            <span className="estadistica-numero">{totalEntrenamientos}</span>
-            <span className="estadistica-label">Entrenamientos</span>
           </div>
         </div>
 
