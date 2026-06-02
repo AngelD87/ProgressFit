@@ -10,6 +10,8 @@ public class LoginResponseDTO {
     private Long idUsuario;
     private String nombre;
     private String email;
+    private Double pesoCorporal;
+    private Double altura;
     private Rol rol;
     private String token;
     private String avatar;

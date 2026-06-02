@@ -30,6 +30,12 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('token')
   }
 
+  //ACTUALIZAR DATOS DEL USUARIO SIN CERRAR SESION
+  const actualizarUsuario = (datosUsuario) => {
+    setUsuario(datosUsuario)
+    localStorage.setItem('usuario', JSON.stringify(datosUsuario))
+  }
+
   //SABER SI ESTA LOGUEADO
   const estaLogueado = () => usuario !== null
 
@@ -42,6 +48,7 @@ export function AuthProvider({ children }) {
       token,
       login,
       logout,
+      actualizarUsuario,
       estaLogueado,
       esAdmin
     }}>

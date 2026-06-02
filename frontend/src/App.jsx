@@ -6,6 +6,7 @@ import PaginaDashboard from "./pages/Dashboard/PaginaDashboard"
 import PaginaNuevoEntrenamiento from "./pages/NuevoEntrenamiento/PaginaNuevoEntrenamiento"
 import PaginaDetalleEntrenamiento from "./pages/DetalleEntrenamiento/PaginaDetalleEntrenamiento"
 import PaginaEstadisticas from "./pages/Estadisticas/PaginaEstadisticas"
+import PaginaPerfil from "./pages/Perfil/PaginaPerfil"
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/entrenamientos/nuevo" element={<PaginaNuevoEntrenamiento />} />
         <Route path="/entrenamientos/:id" element={<PaginaDetalleEntrenamiento />} />
         <Route path="/estadisticas" element={<PaginaEstadisticas />} />
+        <Route path="/perfil" element={<PaginaPerfil />} />
       </Routes>
 
     </BrowserRouter>

@@ -40,11 +40,17 @@ public class UsuarioService {
         if (dto.getNombre() == null || dto.getNombre().trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre es obligatorio");
         }
+        if (dto.getNombre().trim().length() < 2 || dto.getNombre().trim().length() > 50) {
+            throw new IllegalArgumentException("El nombre debe tener entre 2 y 50 caracteres");
+        }
         if (dto.getEmail() == null || dto.getEmail().trim().isEmpty()) {
             throw new IllegalArgumentException("El email es obligatorio");
         }
         if (dto.getPassword() == null || dto.getPassword().trim().isEmpty()) {
             throw new IllegalArgumentException("La contraseña es obligatoria");
+        }
+        if (dto.getPassword().trim().length() < 6) {
+            throw new IllegalArgumentException("La contraseña debe tener al menos 6 caracteres");
         }
         String email = dto.getEmail().trim().toLowerCase();
         if (usuarioRepository.existsByEmail(email)) {
@@ -93,6 +99,9 @@ public class UsuarioService {
             if (dto.getNombre().trim().isEmpty()) {
                 throw new IllegalArgumentException("El nombre no puede estar vacío");
             }
+            if (dto.getNombre().trim().length() < 2 || dto.getNombre().trim().length() > 50) {
+                throw new IllegalArgumentException("El nombre debe tener entre 2 y 50 caracteres");
+            }
             usuario.setNombre(dto.getNombre().trim());
         }
         if (dto.getEmail() != null) {
@@ -109,6 +118,9 @@ public class UsuarioService {
         if (dto.getPassword() != null) {
             if (dto.getPassword().trim().isEmpty()) {
                 throw new IllegalArgumentException("La contraseña no puede estar vacía");
+            }
+            if (dto.getPassword().trim().length() < 6) {
+                throw new IllegalArgumentException("La contraseña debe tener al menos 6 caracteres");
             }
             usuario.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
         }

@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+.contenedor-perfil {
+  min-height: 100vh;
+  background-color: #111;
+  color: white;
+}
+
+.contenido-perfil {
+  padding: 18px 15px 100px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* CABECERA */
+.cabecera-perfil {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.perfil-avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid #3153b7;
+}
+
+.cabecera-perfil h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.perfil-email {
+  color: gray;
+  font-size: 13px;
+  margin: 4px 0 0;
+}
+
+.boton-cambiar-avatar {
+  width: 100%;
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.boton-cambiar-avatar:hover {
+  border-color: #3153b7;
+  color: #4f7fff;
+}
+
+/* SECCIONES */
+.seccion-perfil {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.seccion-perfil h2 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+}
+
+.descripcion-peso {
+  color: #aaa;
+  font-size: 13px;
+  margin: 0 0 15px 0;
+}
+
+.seccion-perfil label {
+  color: #aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.seccion-perfil input {
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.seccion-perfil input:focus {
+  border-color: #3153b7;
+}
+
+.seccion-perfil input::placeholder {
+  color: #666;
+}
+
+.boton-guardar {
+  width: 100%;
+  background-color: #3153b7;
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.boton-guardar:hover {
+  background-color: #24429b;
+}
+
+.boton-guardar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* MENSAJES */
+.mensaje-error {
+  background-color: #441818;
+  color: #ff7777;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.mensaje-ok {
+  background-color: #18441f;
+  color: #77ff8c;
+  border: 1px solid #2a5a2a;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}

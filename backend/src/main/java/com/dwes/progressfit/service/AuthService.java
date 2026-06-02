@@ -26,23 +26,23 @@ public class AuthService {
 
     public LoginResponseDTO login(LoginRequestDTO dto) {
 
-        // BUSCAR USUARIO POR EMAIL
+        //BUSCAR USUARIO POR EMAIL
         String email = dto.getEmail().trim().toLowerCase();
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() ->
                         new IllegalArgumentException("Email o contraseña incorrectos"));
 
-        // VERIFICAR CONTRASEÑA CON BCRYPT
+        //VERIFICAR CONTRASEÑA CON BCRYPT
         if (!passwordEncoder.matches(dto.getPassword(), usuario.getPasswordHash())) {
             throw new IllegalArgumentException("Email o contraseña incorrectos");
         }
 
-        // VERIFICAR QUE ESTÁ ACTIVO
+        //VERIFICAR QUE ESTÁ ACTIVO
         if (!usuario.getIsActive()) {
             throw new IllegalStateException("Usuario desactivado");
         }
 
-        // GENERAR TOKEN JWT
+        //GENERAR TOKEN JWT
         String token = jwtUtil.generarToken(
                 usuario.getEmail(),
                 usuario.getRol().name()
@@ -52,6 +52,8 @@ public class AuthService {
                 .idUsuario(usuario.getIdUsuario())
                 .nombre(usuario.getNombre())
                 .email(usuario.getEmail())
+                .pesoCorporal(usuario.getPesoCorporal())
+                .altura(usuario.getAltura())
                 .rol(usuario.getRol())
                 .token(token)
                 .avatar(usuario.getAvatar())
