@@ -33,6 +33,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.buscarPorIdDTO(id));
     }
 
+    //COMPROBAR SI UN EMAIL YA EXISTE
+    @GetMapping("/existe-email")
+    public ResponseEntity<Boolean> existeEmail(@RequestParam String email) {
+        return ResponseEntity.ok(usuarioService.existeEmail(email));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> actualizar(
             @PathVariable Long id,

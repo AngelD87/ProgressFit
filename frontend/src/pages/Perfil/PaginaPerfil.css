@@ -151,3 +151,27 @@
   margin-bottom: 15px;
   text-align: center;
 }
+
+
+/* SELECT DE SEXO (MISMO ESTILO QUE LOS INPUTS) */
+.select-perfil {
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.select-perfil:focus {
+  border-color: #3153b7;
+}
+
+.select-perfil option {
+  background-color: #2b2b2b;
+}

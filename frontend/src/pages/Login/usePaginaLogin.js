@@ -35,6 +35,8 @@ function usePaginaLogin() {
         email: datos.email,
         pesoCorporal: datos.pesoCorporal,
         altura: datos.altura,
+        fechaNacimiento: datos.fechaNacimiento,
+        sexo: datos.sexo,
         avatar: datos.avatar,
         rol: datos.rol,
         isActive: datos.isActive

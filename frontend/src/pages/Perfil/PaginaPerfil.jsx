@@ -10,6 +10,8 @@ function PaginaPerfil() {
     usuario,
     nombre, setNombre,
     altura, setAltura,
+    fechaNacimiento, setFechaNacimiento,
+    sexo, setSexo,
     password, setPassword,
     peso, setPeso,
     errorDatos, okDatos,
@@ -66,6 +68,23 @@ function PaginaPerfil() {
             onChange={e => setAltura(e.target.value)}
             placeholder="Ej: 1.75"
           />
+
+          <label>Fecha de nacimiento</label>
+          <input
+            type="date"
+            value={fechaNacimiento}
+            onChange={e => setFechaNacimiento(e.target.value)}
+          />
+
+          <label>Sexo</label>
+          <select
+            value={sexo}
+            onChange={e => setSexo(e.target.value)}
+            className="select-perfil">
+            <option value="">Selecciona</option>
+            <option value="HOMBRE">Hombre</option>
+            <option value="MUJER">Mujer</option>
+          </select>
 
           <label>Nueva contraseña</label>
           <input

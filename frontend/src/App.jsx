@@ -7,6 +7,7 @@ import PaginaNuevoEntrenamiento from "./pages/NuevoEntrenamiento/PaginaNuevoEntr
 import PaginaDetalleEntrenamiento from "./pages/DetalleEntrenamiento/PaginaDetalleEntrenamiento"
 import PaginaEstadisticas from "./pages/Estadisticas/PaginaEstadisticas"
 import PaginaPerfil from "./pages/Perfil/PaginaPerfil"
+import PaginaProgreso from "./pages/Progreso/PaginaProgreso"
 
 
 function App() {
@@ -22,8 +23,8 @@ function App() {
         <Route path="/entrenamientos/:id" element={<PaginaDetalleEntrenamiento />} />
         <Route path="/estadisticas" element={<PaginaEstadisticas />} />
         <Route path="/perfil" element={<PaginaPerfil />} />
+        <Route path="/progreso" element={<PaginaProgreso />} />
       </Routes>
-
     </BrowserRouter>
   )
 }

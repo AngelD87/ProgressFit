@@ -12,6 +12,8 @@ function usePaginaPerfil() {
   //DATOS DEL USUARIO
   const [nombre, setNombre] = useState("")
   const [altura, setAltura] = useState("")
+  const [fechaNacimiento, setFechaNacimiento] = useState("")
+  const [sexo, setSexo] = useState("")
   const [password, setPassword] = useState("")
 
   //PESO (SECCION APARTE)
@@ -30,11 +32,13 @@ function usePaginaPerfil() {
     if (usuario) {
       setNombre(usuario.nombre || "")
       setAltura(usuario.altura || "")
+      setFechaNacimiento(usuario.fechaNacimiento || "")
+      setSexo(usuario.sexo || "")
       setPeso(usuario.pesoCorporal || "")
     }
   }, [usuario])
 
-  //GUARDA NOMBRE, ALTURA Y CONTRASEÑA
+  //GUARDA NOMBRE, ALTURA, FECHA NACIMIENTO, SEXO Y CONTRASEÑA
   const handleGuardarDatos = async (e) => {
     e.preventDefault()
     setErrorDatos("")
@@ -43,6 +47,10 @@ function usePaginaPerfil() {
     //VALIDAMOS EL NOMBRE
     if (!nombre.trim()) {
       setErrorDatos("El nombre no puede estar vacío")
+      return
+    }
+    if (nombre.trim().length < 2 || nombre.trim().length > 50) {
+      setErrorDatos("El nombre debe tener entre 2 y 50 caracteres")
       return
     }
 
@@ -56,7 +64,9 @@ function usePaginaPerfil() {
     try {
       const datos = {
         nombre,
-        altura: altura ? parseFloat(altura) : null
+        altura: altura ? parseFloat(altura) : null,
+        fechaNacimiento: fechaNacimiento || null,
+        sexo: sexo || null
       }
       //SOLO MANDAMOS LA CONTRASEÑA SI HA ESCRITO UNA NUEVA
       if (password.trim()) {
@@ -102,6 +112,8 @@ function usePaginaPerfil() {
     usuario,
     nombre, setNombre,
     altura, setAltura,
+    fechaNacimiento, setFechaNacimiento,
+    sexo, setSexo,
     password, setPassword,
     peso, setPeso,
     errorDatos, okDatos,

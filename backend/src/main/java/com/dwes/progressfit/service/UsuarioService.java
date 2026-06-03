@@ -9,6 +9,7 @@ import com.dwes.progressfit.model.Usuario;
 import com.dwes.progressfit.repository.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class UsuarioService {
                 .email(usuario.getEmail())
                 .pesoCorporal(usuario.getPesoCorporal())
                 .altura(usuario.getAltura())
+                .fechaNacimiento(usuario.getFechaNacimiento())
+                .sexo(usuario.getSexo())
                 .isActive(usuario.getIsActive())
                 .rol(usuario.getRol())
                 .avatar(usuario.getAvatar())
@@ -66,12 +69,18 @@ public class UsuarioService {
                 throw new IllegalArgumentException("La altura debe estar entre 1 y 3 metros");
             }
         }
+
+        if (dto.getFechaNacimiento() != null && dto.getFechaNacimiento().isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("La fecha de nacimiento no puede ser futura");
+        }
         Usuario usuario = new Usuario();
         usuario.setNombre(dto.getNombre().trim());
         usuario.setEmail(email);
         usuario.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
         usuario.setPesoCorporal(dto.getPesoCorporal());
         usuario.setAltura(dto.getAltura());
+        usuario.setFechaNacimiento(dto.getFechaNacimiento());
+        usuario.setSexo(dto.getSexo());
         usuario.setFechaRegistro(LocalDateTime.now());
         usuario.setIsActive(true);
         usuario.setRol(Rol.USUARIO);
@@ -136,6 +145,17 @@ public class UsuarioService {
             }
             usuario.setAltura(dto.getAltura());
         }
+        //ACTUALIZAMOS FECHA DE NACIMIENTO SI LA MANDAN
+        if (dto.getFechaNacimiento() != null) {
+            if (dto.getFechaNacimiento().isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("La fecha de nacimiento no puede ser futura");
+            }
+            usuario.setFechaNacimiento(dto.getFechaNacimiento());
+        }
+        //ACTUALIZAMOS SEXO SI LO MANDAN
+        if (dto.getSexo() != null) {
+            usuario.setSexo(dto.getSexo());
+        }
 
         if (dto.getAvatar() != null) {
             usuario.setAvatar(dto.getAvatar());
@@ -156,6 +176,14 @@ public class UsuarioService {
         }
         Usuario actualizado = usuarioRepository.save(usuario);
         return toResponseDTO(actualizado);
+    }
+
+    //COMPRUEBA SI UN EMAIL YA ESTA REGISTRADO
+    public boolean existeEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return false;
+        }
+        return usuarioRepository.existsByEmail(email.trim().toLowerCase());
     }
 
     public void eliminarUsuario(Long id) {

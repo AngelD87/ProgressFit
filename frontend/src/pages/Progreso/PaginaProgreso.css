@@ -1,0 +1,190 @@
+* {
+  box-sizing: border-box;
+}
+
+.contenedor-progreso {
+  min-height: 100vh;
+  background-color: #111;
+  color: white;
+}
+
+.contenido-progreso {
+  padding: 18px 15px 100px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.titulo-progreso {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.texto-cargando {
+  text-align: center;
+  color: gray;
+  padding: 40px;
+}
+
+/* SECCIONES */
+.seccion-progreso {
+  background-color: #1e1e1e;
+  border-left: 5px solid #3153b7;
+  border-radius: 0 6px 6px 0;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.seccion-progreso h2 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+}
+
+.sin-datos {
+  text-align: center;
+  color: gray;
+  padding: 20px 0;
+  font-size: 14px;
+}
+
+/* IMC */
+.imc-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.imc-numero {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.imc-categoria {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.imc-info {
+  color: #aaa;
+  font-size: 12px;
+  margin: 12px 0 0;
+}
+
+/* BOTONES DE PERIODO */
+.botones-periodo {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.boton-periodo {
+  flex: 1;
+  background-color: #2b2b2b;
+  color: #aaa;
+  border: 1px solid #444;
+  padding: 8px 4px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.boton-periodo:hover {
+  border-color: #3153b7;
+  color: white;
+}
+
+.boton-periodo.activo {
+  background-color: #3153b7;
+  border-color: #3153b7;
+  color: white;
+}
+
+/* VARIACIONES */
+.fila-variaciones {
+  display: flex;
+  gap: 12px;
+}
+
+.tarjeta-variacion {
+  flex: 1;
+  background-color: #2b2b2b;
+  border-radius: 6px;
+  padding: 15px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.variacion-numero {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.variacion-neutra {
+  color: #ccc;
+}
+
+.variacion-label {
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* RESUMEN MIN MAX */
+.fila-resumen {
+  display: flex;
+  gap: 10px;
+}
+
+.tarjeta-resumen {
+  flex: 1;
+  background-color: #2b2b2b;
+  border-radius: 6px;
+  padding: 15px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resumen-numero {
+  font-size: 22px;
+  font-weight: bold;
+  color: #4f7fff;
+}
+
+.resumen-label {
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* MOVIL */
+@media (max-width: 480px) {
+  .titulo-progreso {
+    font-size: 18px;
+  }
+
+  .seccion-progreso {
+    padding: 12px 10px;
+  }
+
+  .imc-numero {
+    font-size: 40px;
+  }
+
+  .variacion-numero {
+    font-size: 22px;
+  }
+
+  .resumen-numero {
+    font-size: 18px;
+  }
+
+  .boton-periodo {
+    font-size: 12px;
+    padding: 7px 3px;
+  }
+}

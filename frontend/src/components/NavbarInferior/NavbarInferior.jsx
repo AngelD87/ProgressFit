@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom"
 import iconoInicio from "../../assets/iconos-navegacion/icono-inicio.png"
 import iconoStats from "../../assets/iconos-navegacion/icono-stats.png"
+import iconoProgreso from "../../assets/iconos-navegacion/icono-progreso.png"
 import iconoPerfil from "../../assets/iconos-navegacion/icono-perfil.png"
 import "./NavbarInferior.css"
 
@@ -22,8 +23,14 @@ function NavbarInferior() {
       <button
         className={`nav-inferior-item ${esActivo("/estadisticas") ? "activo" : ""}`}
         onClick={() => navigate("/estadisticas")}>
-        <img src={iconoStats} alt="Stats" className="icono-nav" />
-        Rendimiento
+        <img src={iconoStats} alt="Estadísticas" className="icono-nav" />
+        Estadísticas
+      </button>
+      <button
+        className={`nav-inferior-item ${esActivo("/progreso") ? "activo" : ""}`}
+        onClick={() => navigate("/progreso")}>
+        <img src={iconoProgreso} alt="Progreso" className="icono-nav" />
+        Progreso
       </button>
       <button
         className={`nav-inferior-item ${esActivo("/perfil") ? "activo" : ""}`}

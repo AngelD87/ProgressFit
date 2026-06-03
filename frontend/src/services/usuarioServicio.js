@@ -40,3 +40,9 @@ export const guardarAvatar = async (id, avatar) => {
   const response = await api.put(`/usuarios/${id}`, { avatar })
   return response.data
 }
+
+//COMPROBAR SI UN EMAIL YA EXISTE
+export const comprobarEmail = async (email) => {
+  const response = await api.get(`/usuarios/existe-email`, { params: { email } })
+  return response.data
+}

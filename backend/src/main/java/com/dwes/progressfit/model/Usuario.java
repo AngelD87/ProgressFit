@@ -2,6 +2,7 @@ package com.dwes.progressfit.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,6 +29,13 @@ public class Usuario {
 
     @Column
     private Double altura;
+
+    @Column(name = "fecha_nacimiento")
+    private LocalDate fechaNacimiento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private Sexo sexo;
 
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro;

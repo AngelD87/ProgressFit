@@ -43,6 +43,7 @@ public class SecurityConfig {
                         //RUTAS PUBLICAS (no necesitan token)
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios/existe-email").permitAll()
 
                         //RUTAS SOLO ADMIN
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")

@@ -59,7 +59,7 @@ function usePaginaEstadisticas() {
     return Array.from(ejercicios.entries()).map(([id, nombre]) => ({ id, nombre }))
   }
 
-  //PESO MAXIMO POR SESION DE UN EJERCICIO
+  //PESO MAXIMO POR SESION DE UN EJERCICIO (ULTIMAS 15 SESIONES)
   const datosProgresion = () => {
     if (!ejercicioSeleccionado) return []
     const idEj = parseInt(ejercicioSeleccionado)
@@ -74,10 +74,10 @@ function usePaginaEstadisticas() {
         })
       }
     })
-    return datos
+    return datos.slice(-15)
   }
 
-  //FATIGA DE CADA ENTRENAMIENTO
+  //FATIGA DE CADA ENTRENAMIENTO (ULTIMOS 15)
   const datosFatiga = () => {
     return entrenamientos
       .filter(e => e.fatigaPercibida != null)
@@ -86,6 +86,7 @@ function usePaginaEstadisticas() {
         fatiga: e.fatigaPercibida,
         nombre: e.nombre
       }))
+      .slice(-15)
   }
 
   //ENTRENAMIENTOS AGRUPADOS POR SEMANA
@@ -106,7 +107,7 @@ function usePaginaEstadisticas() {
       .map(([, v]) => ({ semana: v.etiqueta, entrenamientos: v.count }))
   }
 
-  //VALORACION DE CADA ENTRENAMIENTO
+  //VALORACION DE CADA ENTRENAMIENTO (ULTIMOS 15)
   const datosValoracion = () => {
     return entrenamientos
       .filter(e => e.valoracion != null)
@@ -115,6 +116,7 @@ function usePaginaEstadisticas() {
         valoracion: e.valoracion,
         nombre: e.nombre
       }))
+      .slice(-15)
   }
 
   //DEVUELVE FECHA CORTA TIPO "19 MAY"
