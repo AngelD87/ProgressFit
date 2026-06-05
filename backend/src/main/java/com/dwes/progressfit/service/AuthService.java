@@ -54,6 +54,8 @@ public class AuthService {
                 .email(usuario.getEmail())
                 .pesoCorporal(usuario.getPesoCorporal())
                 .altura(usuario.getAltura())
+                .pesoObjetivo(usuario.getPesoObjetivo())
+                .nivelActividad(usuario.getNivelActividad())
                 .fechaNacimiento(usuario.getFechaNacimiento())
                 .sexo(usuario.getSexo())
                 .rol(usuario.getRol())

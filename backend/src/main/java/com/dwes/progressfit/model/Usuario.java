@@ -30,6 +30,13 @@ public class Usuario {
     @Column
     private Double altura;
 
+    @Column(name = "peso_objetivo")
+    private Double pesoObjetivo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "nivel_actividad", length = 20)
+    private NivelActividad nivelActividad;
+
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 

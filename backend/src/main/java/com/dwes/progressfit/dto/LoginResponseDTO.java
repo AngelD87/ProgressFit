@@ -1,5 +1,6 @@
 package com.dwes.progressfit.dto;
 
+import com.dwes.progressfit.model.NivelActividad;
 import com.dwes.progressfit.model.Rol;
 import com.dwes.progressfit.model.Sexo;
 import lombok.Builder;
@@ -14,6 +15,8 @@ public class LoginResponseDTO {
     private String email;
     private Double pesoCorporal;
     private Double altura;
+    private Double pesoObjetivo;
+    private NivelActividad nivelActividad;
     private LocalDate fechaNacimiento;
     private Sexo sexo;
     private Rol rol;

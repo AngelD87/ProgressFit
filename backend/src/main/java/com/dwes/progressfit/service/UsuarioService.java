@@ -31,6 +31,8 @@ public class UsuarioService {
                 .email(usuario.getEmail())
                 .pesoCorporal(usuario.getPesoCorporal())
                 .altura(usuario.getAltura())
+                .pesoObjetivo(usuario.getPesoObjetivo())
+                .nivelActividad(usuario.getNivelActividad())
                 .fechaNacimiento(usuario.getFechaNacimiento())
                 .sexo(usuario.getSexo())
                 .isActive(usuario.getIsActive())
@@ -144,6 +146,17 @@ public class UsuarioService {
                 throw new IllegalArgumentException("La altura debe estar entre 1 y 3 metros");
             }
             usuario.setAltura(dto.getAltura());
+        }
+        //ACTUALIZAMOS PESO OBJETIVO SI LO MANDAN
+        if (dto.getPesoObjetivo() != null) {
+            if (dto.getPesoObjetivo() < 30 || dto.getPesoObjetivo() > 300) {
+                throw new IllegalArgumentException("El peso objetivo debe estar entre 30 y 300kg");
+            }
+            usuario.setPesoObjetivo(dto.getPesoObjetivo());
+        }
+        //ACTUALIZAMOS NIVEL DE ACTIVIDAD SI LO MANDAN
+        if (dto.getNivelActividad() != null) {
+            usuario.setNivelActividad(dto.getNivelActividad());
         }
         //ACTUALIZAMOS FECHA DE NACIMIENTO SI LA MANDAN
         if (dto.getFechaNacimiento() != null) {
