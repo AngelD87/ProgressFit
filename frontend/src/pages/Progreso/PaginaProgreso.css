@@ -73,6 +73,74 @@
   margin: 12px 0 0;
 }
 
+/* OBJETIVO Y CALORIAS */
+.objetivo-contenido {
+  display: flex;
+  flex-direction: column;
+}
+
+.objetivo-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.objetivo-tipo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4f7fff;
+}
+
+.objetivo-meta {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.objetivo-falta {
+  color: #ccc;
+  font-size: 14px;
+  margin: 0 0 15px 0;
+}
+
+.objetivo-falta strong {
+  color: white;
+}
+
+.objetivo-logrado {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.calorias-caja {
+  background-color: #2b2b2b;
+  border-radius: 6px;
+  padding: 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calorias-numero {
+  font-size: 36px;
+  font-weight: bold;
+  color: #4f7fff;
+  line-height: 1;
+}
+
+.calorias-label {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.calorias-info {
+  color: #aaa;
+  font-size: 12px;
+  margin: 12px 0 0;
+  text-align: center;
+}
+
 /* BOTONES DE PERIODO */
 .botones-periodo {
   display: flex;
@@ -173,6 +241,10 @@
 
   .imc-numero {
     font-size: 40px;
+  }
+
+  .calorias-numero {
+    font-size: 30px;
   }
 
   .variacion-numero {

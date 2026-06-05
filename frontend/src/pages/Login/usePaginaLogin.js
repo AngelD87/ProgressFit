@@ -29,18 +29,20 @@ function usePaginaLogin() {
       const tokenJwt = datos.token
 
       //CREAMOS EL OBJETO USUARIO SIN EL TOKEN
-      const datosUsuario = {
-        idUsuario: datos.idUsuario,
-        nombre: datos.nombre,
-        email: datos.email,
-        pesoCorporal: datos.pesoCorporal,
-        altura: datos.altura,
-        fechaNacimiento: datos.fechaNacimiento,
-        sexo: datos.sexo,
-        avatar: datos.avatar,
-        rol: datos.rol,
-        isActive: datos.isActive
-      }
+    const datosUsuario = {
+      idUsuario: datos.idUsuario,
+      nombre: datos.nombre,
+      email: datos.email,
+      pesoCorporal: datos.pesoCorporal,
+      altura: datos.altura,
+      pesoObjetivo: datos.pesoObjetivo,
+      nivelActividad: datos.nivelActividad,
+      fechaNacimiento: datos.fechaNacimiento,
+      sexo: datos.sexo,
+      avatar: datos.avatar,
+      rol: datos.rol,
+      isActive: datos.isActive
+}
 
       //GUARDAMOS LA SESION EN EL CONTEXTO
       guardarSesion(datosUsuario, tokenJwt)

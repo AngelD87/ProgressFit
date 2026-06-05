@@ -73,13 +73,9 @@ function usePaginaProgreso() {
 
   //FILTRA EL HISTORIAL SEGUN EL PERIODO ELEGIDO
   const historialFiltrado = () => {
-    //SI EL PERIODO ES 0 DEVOLVEMOS TODO
     if (periodo === 0) return historial
-
-    //CALCULAMOS LA FECHA LIMITE (HOY MENOS LOS MESES DEL PERIODO)
     const limite = new Date()
     limite.setMonth(limite.getMonth() - periodo)
-
     return historial.filter(r => new Date(r.fecha) >= limite)
   }
 
@@ -96,6 +92,95 @@ function usePaginaProgreso() {
     return fecha.toLocaleDateString("es-ES", { day: "numeric", month: "short" })
   }
 
+  //CALCULA LA EDAD A PARTIR DE LA FECHA DE NACIMIENTO
+  const calcularEdad = () => {
+    if (!usuario?.fechaNacimiento) return null
+    const nacimiento = new Date(usuario.fechaNacimiento)
+    const hoy = new Date()
+    let edad = hoy.getFullYear() - nacimiento.getFullYear()
+    //SI AUN NO HA CUMPLIDO ESTE AÑO RESTAMOS UNO
+    const mes = hoy.getMonth() - nacimiento.getMonth()
+    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+      edad--
+    }
+    return edad
+  }
+
+  //COMPRUEBA SI TENEMOS TODOS LOS DATOS PARA CALCULAR CALORIAS
+  const datosCompletos = () => {
+    return (
+      usuario?.pesoCorporal &&
+      usuario?.altura &&
+      usuario?.sexo &&
+      usuario?.nivelActividad &&
+      usuario?.pesoObjetivo &&
+      calcularEdad() != null
+    )
+  }
+
+  //METABOLISMO BASAL (MIFFLIN-ST JEOR)
+  const calcularTmb = () => {
+    if (!datosCompletos()) return null
+    const peso = usuario.pesoCorporal
+    const alturaCm = usuario.altura * 100
+    const edad = calcularEdad()
+    //BASE COMUN PARA HOMBRE Y MUJER
+    const base = (10 * peso) + (6.25 * alturaCm) - (5 * edad)
+    //EL FINAL CAMBIA SEGUN EL SEXO
+    if (usuario.sexo === "HOMBRE") {
+      return base + 5
+    }
+    return base - 161
+  }
+
+  //GASTO TOTAL DIARIO (TMB POR FACTOR DE ACTIVIDAD)
+  const calcularTdee = () => {
+    const tmb = calcularTmb()
+    if (tmb == null) return null
+    const factores = {
+      SEDENTARIO: 1.2,
+      LIGERO: 1.375,
+      MODERADO: 1.55,
+      ACTIVO: 1.725,
+      MUY_ACTIVO: 1.9
+    }
+    const factor = factores[usuario.nivelActividad]
+    return tmb * factor
+  }
+
+  //CALORIAS RECOMENDADAS SEGUN EL OBJETIVO
+  const caloriasObjetivo = () => {
+    const tdee = calcularTdee()
+    if (tdee == null) return null
+    const pesoActual = usuario.pesoCorporal
+    const objetivo = usuario.pesoObjetivo
+    let calorias = tdee
+    //SI QUIERE ADELGAZAR DEFICIT DE 500
+    if (objetivo < pesoActual) {
+      calorias = tdee - 500
+    }
+    //SI QUIERE GANAR SUPERAVIT DE 500
+    else if (objetivo > pesoActual) {
+      calorias = tdee + 500
+    }
+    //SI ES IGUAL SE MANTIENE EL TDEE
+    return Math.round(calorias)
+  }
+
+  //DEVUELVE EL TEXTO DEL OBJETIVO (PERDER, GANAR O MANTENER)
+  const tipoObjetivo = () => {
+    if (!usuario?.pesoObjetivo || !usuario?.pesoCorporal) return ""
+    if (usuario.pesoObjetivo < usuario.pesoCorporal) return "Perder peso"
+    if (usuario.pesoObjetivo > usuario.pesoCorporal) return "Ganar peso"
+    return "Mantener peso"
+  }
+
+  //CUANTO FALTA PARA EL OBJETIVO
+  const faltaParaObjetivo = () => {
+    if (!usuario?.pesoObjetivo || !usuario?.pesoCorporal) return null
+    return Math.round(Math.abs(usuario.pesoCorporal - usuario.pesoObjetivo) * 10) / 10
+  }
+
   return {
     usuario,
     historial,
@@ -108,7 +193,11 @@ function usePaginaProgreso() {
     pesoMinimo,
     pesoMaximo,
     variacionTotal,
-    datosGrafica
+    datosGrafica,
+    datosCompletos,
+    caloriasObjetivo,
+    tipoObjetivo,
+    faltaParaObjetivo
   }
 }
 

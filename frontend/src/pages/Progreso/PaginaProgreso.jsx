@@ -21,7 +21,11 @@ function PaginaProgreso() {
     pesoMinimo,
     pesoMaximo,
     variacionTotal,
-    datosGrafica
+    datosGrafica,
+    datosCompletos,
+    caloriasObjetivo,
+    tipoObjetivo,
+    faltaParaObjetivo
   } = usePaginaProgreso()
 
   if (cargando) {
@@ -36,6 +40,8 @@ function PaginaProgreso() {
 
   const imc = calcularImc()
   const varTotal = variacionTotal()
+  const calorias = caloriasObjetivo()
+  const falta = faltaParaObjetivo()
 
   //DEVUELVE EL TEXTO CON SIGNO (+ O -) DELANTE
   const conSigno = (valor) => {
@@ -71,6 +77,45 @@ function PaginaProgreso() {
           ) : (
             <p className="sin-datos">
               Completa tu peso y altura en el perfil para ver tu IMC
+            </p>
+          )}
+        </div>
+
+        {/*OBJETIVO Y CALORIAS*/}
+        <div className="seccion-progreso">
+          <h2>Tu objetivo</h2>
+
+          {datosCompletos() ? (
+            <div className="objetivo-contenido">
+              <div className="objetivo-cabecera">
+                <span className="objetivo-tipo">{tipoObjetivo()}</span>
+                <span className="objetivo-meta">
+                  Meta: {usuario.pesoObjetivo}kg
+                </span>
+              </div>
+
+              {falta > 0 ? (
+                <p className="objetivo-falta">
+                  Te faltan <strong>{falta}kg</strong> para llegar a tu objetivo
+                </p>
+              ) : (
+                <p className="objetivo-falta objetivo-logrado">
+                  ¡Has alcanzado tu objetivo! 🎉
+                </p>
+              )}
+
+              <div className="calorias-caja">
+                <span className="calorias-numero">{calorias}</span>
+                <span className="calorias-label">kcal / día recomendadas</span>
+              </div>
+
+              <p className="calorias-info">
+                Calculado con tu peso, altura, edad, sexo y nivel de actividad
+              </p>
+            </div>
+          ) : (
+            <p className="sin-datos">
+              Completa tu peso, altura, fecha de nacimiento, sexo, objetivo y nivel de actividad en el perfil para ver tus calorías recomendadas
             </p>
           )}
         </div>

@@ -19,13 +19,20 @@ function usePaginaPerfil() {
   //PESO (SECCION APARTE)
   const [peso, setPeso] = useState("")
 
+  //OBJETIVO (SECCION APARTE)
+  const [pesoObjetivo, setPesoObjetivo] = useState("")
+  const [nivelActividad, setNivelActividad] = useState("")
+
   //MENSAJES
   const [errorDatos, setErrorDatos] = useState("")
   const [okDatos, setOkDatos] = useState("")
   const [errorPeso, setErrorPeso] = useState("")
   const [okPeso, setOkPeso] = useState("")
+  const [errorObjetivo, setErrorObjetivo] = useState("")
+  const [okObjetivo, setOkObjetivo] = useState("")
   const [cargandoDatos, setCargandoDatos] = useState(false)
   const [cargandoPeso, setCargandoPeso] = useState(false)
+  const [cargandoObjetivo, setCargandoObjetivo] = useState(false)
 
   //RELLENAMOS LOS CAMPOS CON LOS DATOS ACTUALES
   useEffect(() => {
@@ -35,6 +42,8 @@ function usePaginaPerfil() {
       setFechaNacimiento(usuario.fechaNacimiento || "")
       setSexo(usuario.sexo || "")
       setPeso(usuario.pesoCorporal || "")
+      setPesoObjetivo(usuario.pesoObjetivo || "")
+      setNivelActividad(usuario.nivelActividad || "")
     }
   }, [usuario])
 
@@ -44,7 +53,6 @@ function usePaginaPerfil() {
     setErrorDatos("")
     setOkDatos("")
 
-    //VALIDAMOS EL NOMBRE
     if (!nombre.trim()) {
       setErrorDatos("El nombre no puede estar vacío")
       return
@@ -53,8 +61,6 @@ function usePaginaPerfil() {
       setErrorDatos("El nombre debe tener entre 2 y 50 caracteres")
       return
     }
-
-    //VALIDAMOS LA CONTRASEÑA SOLO SI HA ESCRITO UNA NUEVA
     if (password.trim() && password.trim().length < 6) {
       setErrorDatos("La contraseña debe tener al menos 6 caracteres")
       return
@@ -68,7 +74,6 @@ function usePaginaPerfil() {
         fechaNacimiento: fechaNacimiento || null,
         sexo: sexo || null
       }
-      //SOLO MANDAMOS LA CONTRASEÑA SI HA ESCRITO UNA NUEVA
       if (password.trim()) {
         datos.password = password
       }
@@ -89,7 +94,6 @@ function usePaginaPerfil() {
     setErrorPeso("")
     setOkPeso("")
 
-    //VALIDAMOS QUE HAY UN PESO VALIDO
     if (!peso || parseFloat(peso) < 30 || parseFloat(peso) > 300) {
       setErrorPeso("El peso debe estar entre 30 y 300kg")
       return
@@ -98,13 +102,43 @@ function usePaginaPerfil() {
     setCargandoPeso(true)
     try {
       await guardarPeso(usuario.idUsuario, parseFloat(peso))
-      //ACTUALIZAMOS EL CONTEXTO PARA QUE EL DASHBOARD VEA EL PESO NUEVO
       actualizarUsuario({ ...usuario, pesoCorporal: parseFloat(peso) })
       setOkPeso("Peso actualizado correctamente")
     } catch (err) {
       setErrorPeso(err.response?.data?.message || "Error al actualizar el peso")
     } finally {
       setCargandoPeso(false)
+    }
+  }
+
+  //GUARDA EL OBJETIVO Y EL NIVEL DE ACTIVIDAD
+  const handleGuardarObjetivo = async (e) => {
+    e.preventDefault()
+    setErrorObjetivo("")
+    setOkObjetivo("")
+
+    if (!pesoObjetivo || parseFloat(pesoObjetivo) < 30 || parseFloat(pesoObjetivo) > 300) {
+      setErrorObjetivo("El peso objetivo debe estar entre 30 y 300kg")
+      return
+    }
+    if (!nivelActividad) {
+      setErrorObjetivo("Selecciona tu nivel de actividad")
+      return
+    }
+
+    setCargandoObjetivo(true)
+    try {
+      const datos = {
+        pesoObjetivo: parseFloat(pesoObjetivo),
+        nivelActividad
+      }
+      const usuarioActualizado = await actualizarUsuarioApi(usuario.idUsuario, datos)
+      actualizarUsuario(usuarioActualizado)
+      setOkObjetivo("Objetivo guardado correctamente")
+    } catch (err) {
+      setErrorObjetivo(err.response?.data?.message || "Error al guardar el objetivo")
+    } finally {
+      setCargandoObjetivo(false)
     }
   }
 
@@ -116,11 +150,15 @@ function usePaginaPerfil() {
     sexo, setSexo,
     password, setPassword,
     peso, setPeso,
+    pesoObjetivo, setPesoObjetivo,
+    nivelActividad, setNivelActividad,
     errorDatos, okDatos,
     errorPeso, okPeso,
-    cargandoDatos, cargandoPeso,
+    errorObjetivo, okObjetivo,
+    cargandoDatos, cargandoPeso, cargandoObjetivo,
     handleGuardarDatos,
     handleGuardarPeso,
+    handleGuardarObjetivo,
     navigate
   }
 }
