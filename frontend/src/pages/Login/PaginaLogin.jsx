@@ -66,6 +66,10 @@ function PaginaLogin() {
 
         </form>
 
+        <p className="texto-recuperar-login" onClick={() => navigate("/recuperar")}>
+          ¿Olvidaste tu contraseña?
+        </p>
+
         <p className="texto-registro">
           ¿No tienes cuenta?{" "}
           <span onClick={() => navigate("/registro")}>

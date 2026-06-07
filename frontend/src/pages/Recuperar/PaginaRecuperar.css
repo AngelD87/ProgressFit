@@ -99,16 +99,25 @@
   text-decoration: underline;
 }
 
-.texto-recuperar-login {
-  color: #4f7fff;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-  margin-top: 15px;
+/* INDICADOR DE PASOS */
+.indicador-pasos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 50px;
 }
 
-.texto-recuperar-login:hover {
-  text-decoration: underline;
+.punto-paso {
+  width: 35px;
+  height: 5px;
+  border-radius: 3px;
+  background-color: #444;
+  transition: background-color 0.2s;
+}
+
+.punto-paso.activo {
+  background-color: #3153b7;
 }
 
 @media (max-width: 500px) {

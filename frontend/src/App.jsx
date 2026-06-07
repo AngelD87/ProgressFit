@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import PaginaLogin from "./pages/Login/PaginaLogin"
 import PaginaRegistro from "./pages/Registro/PaginaRegistro"
+import PaginaRecuperar from "./pages/Recuperar/PaginaRecuperar"
 import PaginaSeleccionAvatar from "./pages/SeleccionAvatar/PaginaSeleccionAvatar"
 import PaginaDashboard from "./pages/Dashboard/PaginaDashboard"
 import PaginaNuevoEntrenamiento from "./pages/NuevoEntrenamiento/PaginaNuevoEntrenamiento"
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<PaginaLogin />} />
         <Route path="/login" element={<PaginaLogin />} />
         <Route path="/registro" element={<PaginaRegistro />} />
+        <Route path="/recuperar" element={<PaginaRecuperar />} />
 
         {/*RUTAS PROTEGIDAS (NECESITAN LOGIN)*/}
         <Route path="/seleccionar-avatar" element={
@@ -67,10 +69,8 @@ function App() {
         <Route path="/admin" element={
           <RutaProtegida soloAdmin={true}>
             <PaginaAdmin />
-        </RutaProtegida>
+          </RutaProtegida>
         } />
-
-
 
       </Routes>
     </BrowserRouter>
