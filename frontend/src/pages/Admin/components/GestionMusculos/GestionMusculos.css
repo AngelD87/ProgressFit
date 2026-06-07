@@ -1,0 +1,138 @@
+/* FORMULARIO DE ADMIN */
+.form-admin {
+  background-color: #1e1e1e;
+  border-left: 4px solid #3153b7;
+  border-radius: 0 6px 6px 0;
+  padding: 18px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-admin h3 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+}
+
+.form-admin label {
+  color: #aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.form-admin input,
+.form-admin textarea,
+.form-admin select {
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  outline: none;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.form-admin input:focus,
+.form-admin textarea:focus,
+.form-admin select:focus {
+  border-color: #3153b7;
+}
+
+.form-admin select option {
+  background-color: #2b2b2b;
+}
+
+.form-botones {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.boton-guardar-admin {
+  background-color: #3153b7;
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.boton-guardar-admin:hover {
+  background-color: #24429b;
+}
+
+.boton-cancelar-form {
+  background: none;
+  color: #aaa;
+  border: 1px solid #444;
+  padding: 11px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.boton-cancelar-form:hover {
+  border-color: #888;
+  color: white;
+}
+
+/* LISTA DE ADMIN */
+.lista-admin {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  border-left: 4px solid #3153b7;
+  border-radius: 0 5px 5px 0;
+  padding: 12px 15px;
+  gap: 12px;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.item-nombre {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.item-desc {
+  font-size: 12px;
+  color: #888;
+}
+
+.item-acciones {
+  display: flex;
+  gap: 8px;
+}
+
+.boton-editar {
+  background-color: #2b2b2b;
+  color: #4f9fff;
+  border: 1px solid #2a4a6a;
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.boton-editar:hover {
+  background-color: #1a2a3a;
+}

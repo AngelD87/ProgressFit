@@ -16,4 +16,5 @@ public interface RegistroPesoRepository extends JpaRepository<RegistroPeso, Long
     //PARA QUE EL USUARIO SOLO ACTUALICE EL PESO POR DIA
     Optional<RegistroPeso> findByUsuarioIdUsuarioAndFecha(Long idUsuario, LocalDate fecha);
 
+    void deleteByUsuarioIdUsuario(Long idUsuario);
 }

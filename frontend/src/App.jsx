@@ -6,24 +6,72 @@ import PaginaDashboard from "./pages/Dashboard/PaginaDashboard"
 import PaginaNuevoEntrenamiento from "./pages/NuevoEntrenamiento/PaginaNuevoEntrenamiento"
 import PaginaDetalleEntrenamiento from "./pages/DetalleEntrenamiento/PaginaDetalleEntrenamiento"
 import PaginaEstadisticas from "./pages/Estadisticas/PaginaEstadisticas"
-import PaginaPerfil from "./pages/Perfil/PaginaPerfil"
 import PaginaProgreso from "./pages/Progreso/PaginaProgreso"
-
+import PaginaPerfil from "./pages/Perfil/PaginaPerfil"
+import RutaProtegida from "./components/RutaProtegida/RutaProtegida"
+import PaginaAdmin from "./pages/Admin/PaginaAdmin"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+
+        {/*RUTAS PUBLICAS*/}
         <Route path="/" element={<PaginaLogin />} />
         <Route path="/login" element={<PaginaLogin />} />
         <Route path="/registro" element={<PaginaRegistro />} />
-        <Route path="/seleccionar-avatar" element={<PaginaSeleccionAvatar />} />
-        <Route path="/dashboard" element={<PaginaDashboard />} />
-        <Route path="/entrenamientos/nuevo" element={<PaginaNuevoEntrenamiento />} />
-        <Route path="/entrenamientos/:id" element={<PaginaDetalleEntrenamiento />} />
-        <Route path="/estadisticas" element={<PaginaEstadisticas />} />
-        <Route path="/perfil" element={<PaginaPerfil />} />
-        <Route path="/progreso" element={<PaginaProgreso />} />
+
+        {/*RUTAS PROTEGIDAS (NECESITAN LOGIN)*/}
+        <Route path="/seleccionar-avatar" element={
+          <RutaProtegida>
+            <PaginaSeleccionAvatar />
+          </RutaProtegida>
+        } />
+
+        <Route path="/dashboard" element={
+          <RutaProtegida>
+            <PaginaDashboard />
+          </RutaProtegida>
+        } />
+
+        <Route path="/entrenamientos/nuevo" element={
+          <RutaProtegida>
+            <PaginaNuevoEntrenamiento />
+          </RutaProtegida>
+        } />
+
+        <Route path="/entrenamientos/:id" element={
+          <RutaProtegida>
+            <PaginaDetalleEntrenamiento />
+          </RutaProtegida>
+        } />
+
+        <Route path="/estadisticas" element={
+          <RutaProtegida>
+            <PaginaEstadisticas />
+          </RutaProtegida>
+        } />
+
+        <Route path="/progreso" element={
+          <RutaProtegida>
+            <PaginaProgreso />
+          </RutaProtegida>
+        } />
+
+        <Route path="/perfil" element={
+          <RutaProtegida>
+            <PaginaPerfil />
+          </RutaProtegida>
+        } />
+
+        <Route path="/admin" element={
+          <RutaProtegida soloAdmin={true}>
+            <PaginaAdmin />
+        </RutaProtegida>
+        } />
+
+
+
       </Routes>
     </BrowserRouter>
   )

@@ -1,0 +1,180 @@
+.tabla-usuarios {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fila-cabecera {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #333;
+}
+
+.fila-usuario {
+  display: flex;
+  align-items: center;
+  background-color: #1e1e1e;
+  border-left: 4px solid #3153b7;
+  border-radius: 0 5px 5px 0;
+  padding: 12px 15px;
+}
+
+.col-nombre {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.col-rol {
+  flex: 2;
+}
+
+.col-estado {
+  flex: 2;
+}
+
+.nombre-usuario {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.email-usuario {
+  font-size: 12px;
+  color: #888;
+}
+
+/* SELECTOR DE ROL */
+.select-rol {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #444;
+  padding: 7px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+}
+
+.select-rol:focus {
+  border-color: #3153b7;
+}
+
+.select-rol:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.select-rol option {
+  background-color: #2b2b2b;
+}
+
+/* BOTON DE ESTADO */
+.boton-estado {
+  border: none;
+  padding: 7px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  min-width: 80px;
+}
+
+.boton-estado.activo {
+  background-color: #18441f;
+  color: #77ff8c;
+  border: 1px solid #2a5a2a;
+}
+
+.boton-estado.inactivo {
+  background-color: #441818;
+  color: #ff7777;
+  border: 1px solid #5a2a2a;
+}
+
+.boton-estado:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* BARRA DE BUSCADOR Y LIMITE */
+.barra-filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-buscar {
+  flex: 1;
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-buscar:focus {
+  border-color: #3153b7;
+}
+
+.input-buscar::placeholder {
+  color: #666;
+}
+
+.select-limite {
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.select-limite:focus {
+  border-color: #3153b7;
+}
+
+.select-limite option {
+  background-color: #2b2b2b;
+}
+
+@media (max-width: 600px) {
+  .barra-filtros {
+    flex-direction: column;
+  }
+}
+
+
+/* MOVIL */
+@media (max-width: 600px) {
+  .fila-cabecera {
+    display: none;
+  }
+
+  .fila-usuario {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .col-nombre,
+  .col-rol,
+  .col-estado {
+    flex: 1;
+    width: 100%;
+  }
+
+  .select-rol,
+  .boton-estado {
+    width: 100%;
+  }
+}

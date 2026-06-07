@@ -100,7 +100,7 @@ function PaginaProgreso() {
                 </p>
               ) : (
                 <p className="objetivo-falta objetivo-logrado">
-                  ¡Has alcanzado tu objetivo! 🎉
+                  ¡Has alcanzado tu objetivo! 
                 </p>
               )}
 

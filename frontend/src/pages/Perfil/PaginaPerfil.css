@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 
 .contenedor-perfil {
   min-height: 100vh;
@@ -129,7 +126,6 @@
   cursor: not-allowed;
 }
 
-/* MENSAJES */
 .mensaje-error {
   background-color: #441818;
   color: #ff7777;
