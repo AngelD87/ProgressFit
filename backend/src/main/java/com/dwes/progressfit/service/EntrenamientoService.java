@@ -81,10 +81,6 @@ public class EntrenamientoService {
             throw new IllegalArgumentException("El nombre del entrenamiento es obligatorio");
         }
         String nombreLimpio = dto.getNombre().trim();
-        if (entrenamientoRepository.existsByUsuarioIdUsuarioAndNombreIgnoreCase(
-                dto.getIdUsuario(), nombreLimpio)) {
-            throw new IllegalArgumentException("Ya tienes un entrenamiento con ese nombre");
-        }
         Entrenamiento entrenamiento = new Entrenamiento();
         entrenamiento.setUsuario(usuario);
         entrenamiento.setNombre(nombreLimpio);
